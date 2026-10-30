@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>FonijBuild — AI-first Product Builder Ecosystem</title>
+
+    <meta
+      name="description"
+      content="AI-first product builder ecosystem for turning ideas into maintainable software."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta
+      property="og:title"
+      content="FonijBuild — AI-first Product Builder Ecosystem"
+    />
+
+    <meta
+      property="og:description"
+      content="Turn ideas into maintainable software. Build only what you need. Evolve when you need more."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fonijbuild.github.io/" />
+
+    <link rel="canonical" href="https://fonijbuild.github.io/" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+
+        const theme =
+          savedTheme ??
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/" aria-label="FonijBuild home">
+          <img
+            class="brand-logo"
+            src="/assets/logo.svg"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <span>FonijBuild</span>
+        </a>
+
+        <div class="nav-actions">
+          <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#philosophy">Philosophy</a>
+
+            <a
+              href="https://github.com/FonijBuild"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </nav>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Switch color theme"
+            title="Switch color theme"
+          >
+            <svg
+              class="theme-icon theme-icon--sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"
+              ></path>
+            </svg>
+
+            <svg
+              class="theme-icon theme-icon--moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-glow hero-glow--left"></div>
+        <div class="hero-glow hero-glow--right"></div>
+
+        <div class="container hero-content">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Open-source product engineering ecosystem
+          </div>
+
+          <h1>
+            Turn ideas into
+            <span class="gradient-text">maintainable software.</span>
+          </h1>
+
+          <p class="hero-description">
+            FonijBuild is an AI-first product builder ecosystem for choosing the
+            right architecture, shipping faster, and evolving software without
+            starting over.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button--primary"
+              href="https://github.com/FonijBuild"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore on GitHub
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+
+            <a class="button button--secondary" href="#ecosystem">
+              Explore ecosystem
+            </a>
+          </div>
+
+          <p class="hero-principle">
+            Build only what you need.
+            <span>∙</span>
+            Evolve when you need more.
+          </p>
+        </div>
+
+        <div class="container architecture-preview">
+          <div class="architecture-step">
+            <span class="step-number">01</span>
+
+            <div>
+              <strong>Validate</strong>
+              <span>Clarify the opportunity</span>
+            </div>
+          </div>
+
+          <div class="architecture-arrow">→</div>
+
+          <div class="architecture-step">
+            <span class="step-number">02</span>
+
+            <div>
+              <strong>Architect</strong>
+              <span>Choose the right foundation</span>
+            </div>
+          </div>
+
+          <div class="architecture-arrow">→</div>
+
+          <div class="architecture-step">
+            <span class="step-number">03</span>
+
+            <div>
+              <strong>Build</strong>
+              <span>Ship what matters first</span>
+            </div>
+          </div>
+
+          <div class="architecture-arrow">→</div>
+
+          <div class="architecture-step">
+            <span class="step-number">04</span>
+
+            <div>
+              <strong>Evolve</strong>
+              <span>Grow without starting over</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ecosystem">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label">Ecosystem</span>
+
+            <h2>Tools for the product lifecycle.</h2>
+
+            <p>
+              Start with a foundation, make architecture decisions explicit, and
+              evolve the product as requirements grow.
+            </p>
+          </div>
+
+          <div class="product-grid">
+            <a
+              class="product-card product-card--featured"
+              href="https://fonijbuild.github.io/easy-starters/"
+            >
+              <div class="product-card-header">
+                <span class="product-icon">ES</span>
+                <span class="product-status">Available</span>
+              </div>
+
+              <div class="product-card-content">
+                <h3>Easy Starters</h3>
+
+                <p>
+                  Production-ready software foundations for web, APIs, mobile,
+                  extensions, services, and documentation.
+                </p>
+              </div>
+
+              <span class="product-link">
+                Explore starters
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+
+            <a
+              class="product-card"
+              href="https://github.com/FonijBuild/fonij-cli"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="product-card-header">
+                <span class="product-icon">CLI</span>
+                <span class="product-status product-status--development">
+                  In development
+                </span>
+              </div>
+
+              <div class="product-card-content">
+                <h3>Fonij CLI</h3>
+
+                <p>
+                  An AI-first product builder CLI for creating the right
+                  foundation and evolving it as the product grows.
+                </p>
+              </div>
+
+              <span class="product-link">
+                View repository
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+
+            <a
+              class="product-card"
+              href="https://github.com/FonijBuild/fonij-catalog"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="product-card-header">
+                <span class="product-icon">CAT</span>
+                <span class="product-status product-status--development">
+                  Growing
+                </span>
+              </div>
+
+              <div class="product-card-content">
+                <h3>Fonij Catalog</h3>
+
+                <p>
+                  A machine-readable catalog of foundations, blueprints, and
+                  evolutions used by Fonij tooling.
+                </p>
+              </div>
+
+              <span class="product-link">
+                View repository
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+
+            <a
+              class="product-card"
+              href="https://github.com/FonijBuild/product-builder-handbook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="product-card-header">
+                <span class="product-icon">PB</span>
+                <span class="product-status product-status--development">
+                  Growing
+                </span>
+              </div>
+
+              <div class="product-card-content">
+                <h3>Product Builder Handbook</h3>
+
+                <p>
+                  Practical product engineering knowledge for turning ideas into
+                  maintainable software.
+                </p>
+              </div>
+
+              <span class="product-link">
+                View repository
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section philosophy-section" id="philosophy">
+        <div class="container philosophy-layout">
+          <div class="section-heading philosophy-heading">
+            <span class="section-label">Philosophy</span>
+
+            <h2>Software should grow with the product.</h2>
+
+            <p>
+              Avoid premature complexity. Start with the smallest useful
+              architecture, keep decisions explicit, and evolve only when real
+              requirements demand it.
+            </p>
+          </div>
+
+          <div class="principles">
+            <article class="principle">
+              <span class="principle-index">01</span>
+
+              <div>
+                <h3>Architecture before dependencies.</h3>
+
+                <p>
+                  Clear boundaries and maintainability matter more than adding
+                  more libraries.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle">
+              <span class="principle-index">02</span>
+
+              <div>
+                <h3>Start small.</h3>
+
+                <p>
+                  Choose the simplest production-capable foundation that fits
+                  today's requirements.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle">
+              <span class="principle-index">03</span>
+
+              <div>
+                <h3>Evolve intentionally.</h3>
+
+                <p>
+                  Add complexity only when the product has earned the need for
+                  it.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle">
+              <span class="principle-index">04</span>
+
+              <div>
+                <h3>AI-first, human-readable.</h3>
+
+                <p>
+                  Explicit specs, architecture, and project contracts make
+                  software easier for both humans and agents to understand.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="vision-card">
+            <span class="section-label">Direction</span>
+
+            <h2>
+              The architecture and evolution layer for
+              <span class="gradient-text">AI-built software.</span>
+            </h2>
+
+            <p>
+              FonijBuild is exploring a future where humans and AI agents can
+              build software quickly without sacrificing architecture,
+              maintainability, or the ability to evolve.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <span class="section-label">Open source</span>
+
+              <h2>Build better foundations.</h2>
+
+              <p>
+                Explore FonijBuild projects, use the starters, and follow the
+                ecosystem as it evolves.
+              </p>
+            </div>
+
+            <a
+              class="button button--primary"
+              href="https://github.com/FonijBuild"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View FonijBuild on GitHub
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="/">
+          <img
+            class="brand-logo"
+            src="/assets/logo.svg"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <span>FonijBuild</span>
+        </a>
+
+        <p>Build only what you need. Evolve when you need more.</p>
+
+        <a
+          href="https://github.com/FonijBuild"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const toggle = document.querySelector("#theme-toggle");
+        const root = document.documentElement;
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+
+        function setTheme(theme) {
+          root.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+
+          themeColor?.setAttribute(
+            "content",
+            theme === "dark" ? "#090e1b" : "#ffffff",
+          );
+
+          toggle?.setAttribute(
+            "aria-label",
+            theme === "dark" ? "Switch to light theme" : "Switch to dark theme",
+          );
+        }
+
+        setTheme(root.dataset.theme);
+
+        toggle?.addEventListener("click", () => {
+          setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+        });
+      })();
+    </script>
+  </body>
+</html>
