@@ -1,75 +1,50 @@
 :root {
   color-scheme: light;
-
   --bg: #ffffff;
   --bg-soft: #f7f8fc;
-
   --surface: #ffffff;
   --surface-soft: #f6f7fb;
   --surface-hover: #f0f2f7;
-
   --text: #1d2438;
   --text-strong: #101529;
   --muted: #656d7f;
-
   --border: #e1e4eb;
   --border-strong: #d2d7e1;
-
   --purple: #763cff;
   --purple-soft: #8c52ff;
-
   --blue: #2d7df4;
   --green: #22cfa0;
-
   --accent: #675cff;
   --accent-hover: #5348e8;
-
   --nav-bg: rgba(255, 255, 255, 0.84);
-
   --shadow-sm:
     0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 12px rgba(16, 24, 40, 0.04);
-
   --shadow-md: 0 18px 50px rgba(16, 24, 40, 0.08);
-
   --max-width: 1120px;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-
   --bg: #090e1b;
   --bg-soft: #0c1222;
-
   --surface: #10172a;
   --surface-soft: #141c30;
   --surface-hover: #192238;
-
   --text: #d7dce7;
   --text-strong: #f7f8fb;
   --muted: #8d96a9;
-
   --border: #232c40;
   --border-strong: #333d55;
-
   --purple: #8c52ff;
   --purple-soft: #a176ff;
-
   --blue: #408df9;
   --green: #2bd9ab;
-
   --accent: #8c82ff;
   --accent-hover: #aaa3ff;
-
   --nav-bg: rgba(9, 14, 27, 0.84);
-
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15), 0 5px 14px rgba(0, 0, 0, 0.14);
-
   --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.24);
 }
-
-/* ----------------------------------
-   Reset
----------------------------------- */
 
 *,
 *::before,
@@ -78,17 +53,19 @@
 }
 
 html {
+  min-height: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
-
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   color: var(--text);
-
   font-family:
     Inter,
     ui-sans-serif,
@@ -96,12 +73,14 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-
   font-size: 16px;
   line-height: 1.6;
-
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1;
 }
 
 body,
@@ -133,19 +112,12 @@ a {
   margin-inline: auto;
 }
 
-/* ----------------------------------
-   Header
----------------------------------- */
-
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-
   border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
-
   background: var(--nav-bg);
-
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -154,7 +126,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   min-height: 4.25rem;
 }
 
@@ -162,19 +133,15 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-
   color: var(--text-strong);
-
   font-size: 0.95rem;
   font-weight: 720;
-
   letter-spacing: -0.015em;
 }
 
 .brand-logo {
   width: 1.75rem;
   height: 1.75rem;
-
   object-fit: contain;
 }
 
@@ -192,10 +159,8 @@ a {
 
 .nav-links a {
   color: var(--muted);
-
   font-size: 0.875rem;
   font-weight: 540;
-
   transition: color 160ms ease;
 }
 
@@ -203,32 +168,19 @@ a {
   color: var(--text-strong);
 }
 
-/* ----------------------------------
-   Theme toggle
----------------------------------- */
-
 .theme-toggle {
   position: relative;
-
   display: grid;
   place-items: center;
-
   width: 2.3rem;
   height: 2.3rem;
-
   padding: 0;
-
   border: 1px solid var(--border);
   border-radius: 0.7rem;
-
   background: var(--surface);
-
   color: var(--muted);
-
   cursor: pointer;
-
   box-shadow: var(--shadow-sm);
-
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -238,11 +190,8 @@ a {
 
 .theme-toggle:hover {
   border-color: var(--border-strong);
-
   background: var(--surface-hover);
-
   color: var(--text-strong);
-
   transform: translateY(-1px);
 }
 
@@ -250,23 +199,18 @@ a {
 .button:focus-visible,
 a:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
-
   outline-offset: 3px;
 }
 
 .theme-icon {
   position: absolute;
-
   width: 1.05rem;
   height: 1.05rem;
-
   fill: none;
-
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-
   transition:
     opacity 160ms ease,
     transform 180ms ease;
@@ -290,19 +234,11 @@ a:focus-visible {
   transform: rotate(-45deg) scale(0.65);
 }
 
-/* ----------------------------------
-   Hero
----------------------------------- */
-
 .hero {
   position: relative;
-
   padding: clamp(5rem, 11vw, 8.5rem) 0 clamp(4.5rem, 8vw, 7rem);
-
   overflow: hidden;
-
   border-bottom: 1px solid var(--border);
-
   background:
     linear-gradient(
       180deg,
@@ -314,107 +250,53 @@ a:focus-visible {
 
 .hero::before {
   content: "";
-
   position: absolute;
-
   width: 700px;
   height: 700px;
-
   top: -430px;
   left: 50%;
-
   border-radius: 50%;
-
   background: color-mix(in srgb, var(--purple) 7%, transparent);
-
   filter: blur(80px);
-
   transform: translateX(-50%);
-
   pointer-events: none;
 }
 
 .hero-glow {
   position: absolute;
-
   width: 24rem;
   height: 24rem;
-
   border-radius: 999px;
-
   filter: blur(120px);
-
   opacity: 0.09;
-
   pointer-events: none;
 }
 
 .hero-glow--left {
   top: 10%;
   left: -12rem;
-
   background: var(--purple);
 }
 
 .hero-glow--right {
   top: 25%;
   right: -12rem;
-
   background: var(--green);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-
   max-width: 900px;
-
   text-align: center;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-
-  margin-bottom: 1.6rem;
-
-  padding: 0.48rem 0.75rem;
-
-  border: 1px solid var(--border);
-  border-radius: 999px;
-
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-
-  color: var(--muted);
-
-  font-size: 0.78rem;
-  font-weight: 620;
-
-  box-shadow: var(--shadow-sm);
-}
-
-.eyebrow-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-
-  border-radius: 999px;
-
-  background: var(--green);
-
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 15%, transparent);
 }
 
 .hero h1 {
   max-width: 900px;
-
   margin: 0 auto 1.5rem;
-
   color: var(--text-strong);
-
   font-size: clamp(3rem, 8vw, 6.7rem);
   font-weight: 820;
-
   line-height: 0.98;
   letter-spacing: -0.065em;
 }
@@ -426,20 +308,15 @@ a:focus-visible {
     var(--blue) 56%,
     var(--green) 110%
   );
-
   -webkit-background-clip: text;
   background-clip: text;
-
   color: transparent;
 }
 
 .hero-description {
   max-width: 710px;
-
   margin: 0 auto;
-
   color: var(--muted);
-
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   line-height: 1.75;
 }
@@ -449,9 +326,7 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-
   gap: 0.8rem;
-
   margin-top: 2rem;
 }
 
@@ -460,17 +335,12 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-
   min-height: 2.9rem;
-
   padding: 0.7rem 1.1rem;
-
   border: 1px solid transparent;
   border-radius: 0.75rem;
-
   font-size: 0.9rem;
   font-weight: 630;
-
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -482,9 +352,7 @@ a:focus-visible {
 .button svg {
   width: 1rem;
   height: 1rem;
-
   fill: none;
-
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
@@ -497,9 +365,7 @@ a:focus-visible {
 
 .button--primary {
   background: var(--text-strong);
-
   color: var(--bg);
-
   box-shadow: var(--shadow-sm);
 }
 
@@ -509,108 +375,77 @@ a:focus-visible {
 
 .button--secondary {
   border-color: var(--border);
-
   background: var(--surface);
-
   color: var(--text);
 }
 
 .button--secondary:hover {
   border-color: var(--border-strong);
-
   background: var(--surface-hover);
 }
 
 .hero-principle {
   margin: 1.5rem 0 0;
-
   color: var(--muted);
-
   font-size: 0.83rem;
 }
 
 .hero-principle span {
   margin-inline: 0.35rem;
-
   color: var(--border-strong);
 }
-
-/* ----------------------------------
-   Product journey
----------------------------------- */
 
 .architecture-preview {
   position: relative;
   z-index: 1;
-
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   align-items: center;
-
   margin-top: clamp(4rem, 9vw, 6.5rem);
-
   padding: 1.15rem;
-
   border: 1px solid var(--border);
   border-radius: 1.15rem;
-
   background: color-mix(in srgb, var(--surface) 88%, transparent);
-
   box-shadow: var(--shadow-md);
-
   backdrop-filter: blur(14px);
 }
 
 .architecture-step {
   display: flex;
   align-items: center;
-
   gap: 0.8rem;
-
   min-width: 0;
-
   padding: 0.75rem;
 }
 
 .step-number {
   color: var(--accent);
-
   font-size: 0.7rem;
   font-weight: 720;
-
   letter-spacing: 0.06em;
 }
 
 .architecture-step div {
   display: flex;
   flex-direction: column;
-
   min-width: 0;
 }
 
 .architecture-step strong {
   color: var(--text-strong);
-
   font-size: 0.9rem;
 }
 
 .architecture-step div span {
   margin-top: 0.15rem;
-
   color: var(--muted);
-
   font-size: 0.74rem;
-
   white-space: nowrap;
 }
 
 .architecture-arrow {
   color: var(--border-strong);
 }
-
-/* ----------------------------------
-   Sections
----------------------------------- */
 
 .section {
   padding-block: clamp(5rem, 10vw, 8rem);
@@ -622,20 +457,15 @@ a:focus-visible {
 
 .section-heading {
   max-width: 670px;
-
   margin-bottom: 3rem;
 }
 
 .section-label {
   display: block;
-
   margin-bottom: 0.85rem;
-
   color: var(--accent);
-
   font-size: 0.75rem;
   font-weight: 720;
-
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -644,12 +474,9 @@ a:focus-visible {
 .vision-card h2,
 .cta h2 {
   margin: 0 0 1rem;
-
   color: var(--text-strong);
-
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 760;
-
   line-height: 1.08;
   letter-spacing: -0.045em;
 }
@@ -658,41 +485,27 @@ a:focus-visible {
 .vision-card p,
 .cta p {
   margin: 0;
-
   color: var(--muted);
-
   font-size: 1rem;
   line-height: 1.75;
 }
 
-/* ----------------------------------
-   Product cards
----------------------------------- */
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: 1rem;
 }
 
 .product-card {
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   min-height: 290px;
-
   padding: 1.6rem;
-
   border: 1px solid var(--border);
   border-radius: 1rem;
-
   background: var(--surface);
-
   box-shadow: var(--shadow-sm);
-
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -702,11 +515,8 @@ a:focus-visible {
 
 .product-card:hover {
   border-color: var(--border-strong);
-
   background: var(--surface-hover);
-
   box-shadow: var(--shadow-md);
-
   transform: translateY(-3px);
 }
 
@@ -724,46 +534,34 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 1rem;
 }
 
 .product-icon {
   display: grid;
   place-items: center;
-
   width: 2.6rem;
   height: 2.6rem;
-
   border: 1px solid var(--border);
   border-radius: 0.72rem;
-
   background: var(--surface-soft);
-
   color: var(--text-strong);
-
   font-size: 0.67rem;
   font-weight: 760;
-
   letter-spacing: -0.01em;
 }
 
 .product-status {
   padding: 0.3rem 0.55rem;
-
   border-radius: 999px;
-
   background: color-mix(in srgb, var(--green) 11%, transparent);
-
   color: var(--green);
-
   font-size: 0.7rem;
   font-weight: 650;
 }
 
 .product-status--development {
   background: color-mix(in srgb, var(--accent) 9%, transparent);
-
   color: var(--accent);
 }
 
@@ -773,20 +571,15 @@ a:focus-visible {
 
 .product-card h3 {
   margin: 0 0 0.7rem;
-
   color: var(--text-strong);
-
   font-size: 1.28rem;
   font-weight: 680;
-
   letter-spacing: -0.025em;
 }
 
 .product-card p {
   margin: 0;
-
   color: var(--muted);
-
   font-size: 0.91rem;
   line-height: 1.7;
 }
@@ -794,14 +587,10 @@ a:focus-visible {
 .product-link {
   display: flex;
   align-items: center;
-
   gap: 0.35rem;
-
   margin-top: auto;
   padding-top: 2rem;
-
   color: var(--text-strong);
-
   font-size: 0.83rem;
   font-weight: 630;
 }
@@ -814,10 +603,6 @@ a:focus-visible {
   transform: translateX(3px);
 }
 
-/* ----------------------------------
-   Philosophy
----------------------------------- */
-
 .philosophy-section {
   background: var(--bg-soft);
 }
@@ -825,16 +610,13 @@ a:focus-visible {
 .philosophy-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-
   gap: clamp(3rem, 8vw, 7rem);
 }
 
 .philosophy-heading {
   position: sticky;
   top: 8rem;
-
   align-self: start;
-
   margin-bottom: 0;
 }
 
@@ -845,55 +627,38 @@ a:focus-visible {
 .principle {
   display: grid;
   grid-template-columns: 3rem 1fr;
-
   gap: 1rem;
-
   padding-block: 1.6rem;
-
   border-bottom: 1px solid var(--border);
 }
 
 .principle-index {
   padding-top: 0.25rem;
-
   color: var(--accent);
-
   font-size: 0.72rem;
   font-weight: 720;
 }
 
 .principle h3 {
   margin: 0 0 0.5rem;
-
   color: var(--text-strong);
-
   font-size: 1rem;
   font-weight: 650;
 }
 
 .principle p {
   margin: 0;
-
   color: var(--muted);
-
   font-size: 0.9rem;
   line-height: 1.7;
 }
 
-/* ----------------------------------
-   Vision
----------------------------------- */
-
 .vision-card {
   position: relative;
-
   overflow: hidden;
-
   padding: clamp(2rem, 6vw, 4.5rem);
-
   border: 1px solid var(--border);
   border-radius: 1.25rem;
-
   background:
     radial-gradient(
       circle at 95% 10%,
@@ -906,7 +671,6 @@ a:focus-visible {
       transparent 18rem
     ),
     var(--surface);
-
   box-shadow: var(--shadow-md);
 }
 
@@ -918,10 +682,6 @@ a:focus-visible {
   max-width: 720px;
 }
 
-/* ----------------------------------
-   CTA
----------------------------------- */
-
 .cta-section {
   padding: 0 0 clamp(5rem, 10vw, 8rem);
 }
@@ -930,11 +690,8 @@ a:focus-visible {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-
   gap: 3rem;
-
   padding-top: clamp(3rem, 7vw, 5rem);
-
   border-top: 1px solid var(--border);
 }
 
@@ -946,13 +703,9 @@ a:focus-visible {
   font-size: clamp(1.9rem, 5vw, 3rem);
 }
 
-/* ----------------------------------
-   Footer
----------------------------------- */
-
 .site-footer {
+  flex-shrink: 0;
   border-top: 1px solid var(--border);
-
   background: var(--bg-soft);
 }
 
@@ -960,19 +713,14 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 2rem;
-
   min-height: 6rem;
-
   color: var(--muted);
-
   font-size: 0.8rem;
 }
 
 .footer-brand {
   color: var(--text-strong);
-
   font-size: 0.87rem;
 }
 
@@ -983,7 +731,6 @@ a:focus-visible {
 
 .footer-inner p {
   margin: 0;
-
   text-align: center;
 }
 
@@ -994,10 +741,6 @@ a:focus-visible {
 .footer-inner > a:last-child:hover {
   color: var(--text-strong);
 }
-
-/* ----------------------------------
-   Motion
----------------------------------- */
 
 @media (prefers-reduced-motion: no-preference) {
   body,
@@ -1011,14 +754,9 @@ a:focus-visible {
   }
 }
 
-/* ----------------------------------
-   Tablet
----------------------------------- */
-
 @media (max-width: 900px) {
   .architecture-preview {
     grid-template-columns: repeat(2, 1fr);
-
     gap: 0.5rem;
   }
 
@@ -1032,7 +770,6 @@ a:focus-visible {
 
   .philosophy-heading {
     position: static;
-
     max-width: 700px;
   }
 
@@ -1041,10 +778,6 @@ a:focus-visible {
     flex-direction: column;
   }
 }
-
-/* ----------------------------------
-   Mobile
----------------------------------- */
 
 @media (max-width: 700px) {
   .container {
@@ -1091,7 +824,6 @@ a:focus-visible {
 
   .architecture-preview {
     grid-template-columns: 1fr;
-
     padding: 0.75rem;
   }
 
@@ -1114,11 +846,8 @@ a:focus-visible {
   .footer-inner {
     flex-direction: column;
     justify-content: center;
-
     gap: 0.7rem;
-
     min-height: 8rem;
-
     text-align: center;
   }
 }
@@ -1135,7 +864,6 @@ a:focus-visible {
   .hero-principle {
     display: flex;
     flex-direction: column;
-
     gap: 0.2rem;
   }
 
