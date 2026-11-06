@@ -1,0 +1,65 @@
+---
+title: کامپوننت‌های سفارشی
+description: با استفاده از MDX، کامپوننت‌های Astro قابل استفاده مجدد را داخل صفحات مستندات اضافه کنید.
+sidebar:
+  order: 2
+---
+
+import Callout from '../../../../components/content/Callout.astro';
+
+برای بیشتر مستندات از Markdown ساده استفاده کنید. زمانی که یک صفحه به UI قابل استفاده مجدد، embed یا نمایش غنی‌تر نیاز دارد، از فایل `.mdx` استفاده کنید و یک Astro component را از `src/components/content/` import کنید.
+
+<Callout title="MDX اختیاری است">
+  مستندات معمولی را در فایل‌های `.md` نگه دارید. فقط صفحاتی را به `.mdx` تبدیل کنید که واقعاً به component نیاز دارند.
+</Callout>
+
+## ساخت یک component
+
+یک Astro component در مسیر زیر اضافه کنید:
+
+```text
+src/components/content/
+```
+
+برای مثال:
+
+```astro
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="not-content">
+  <h3>{title}</h3>
+  <slot />
+</section>
+```
+
+کلاس `not-content` مانع می‌شود styleهای پیش‌فرض محتوای Markdown در Starlight به‌صورت ناخواسته روی layout داخلی component اثر بگذارند.
+
+## استفاده داخل یک صفحه مستندات
+
+صفحه را با پسوند `.mdx` ایجاد کنید یا پسوند آن را به `.mdx` تغییر دهید و سپس component را import کنید:
+
+```mdx
+---
+title: تصمیم معماری
+---
+
+import Callout from '../../../../components/content/Callout.astro';
+
+# تصمیم معماری
+
+<Callout title="چرا این موضوع مهم است؟">
+  componentها می‌توانند از طریق slot خود **محتوای Markdown** هم دریافت کنند.
+</Callout>
+```
+
+## مرز مسئولیت‌ها را واضح نگه دارید
+
+از `src/components/content/` برای componentهایی استفاده کنید که نویسنده مستقیماً داخل صفحات MDX قرار می‌دهد. از `src/components/starlight/` فقط برای override کردن رابط کاربری خود Starlight، مانند footer سایت، استفاده کنید.
+
+Astro componentها را ترجیح دهید چون به‌صورت پیش‌فرض به HTML استاتیک render می‌شوند. React، Vue، Svelte یا framework دیگری را فقط زمانی اضافه کنید که client-side interactivity واقعاً لازم باشد.

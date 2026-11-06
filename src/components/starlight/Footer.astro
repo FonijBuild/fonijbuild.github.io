@@ -1,0 +1,77 @@
+---
+import DefaultFooter from '@astrojs/starlight/components/Footer.astro';
+---
+
+<div class="page-footer">
+  <DefaultFooter>
+    <slot />
+  </DefaultFooter>
+
+  <div class="fonij-credit not-content">
+    <span dir={Astro.locals.t.dir()}>
+      {Astro.locals.t('footer.text')}
+    </span>
+    <a
+      href="https://github.com/FonijBuild"
+      rel="noopener noreferrer"
+    >
+      FonijBuild
+    </a>
+  </div>
+</div>
+
+<style>
+  :global(.main-pane) {
+    min-height: calc(100vh - var(--sl-nav-height));
+    min-height: calc(100dvh - var(--sl-nav-height));
+  }
+
+  :global(.main-pane > main) {
+    display: flex;
+    min-height: inherit;
+    flex-direction: column;
+  }
+
+  :global(.main-pane > main > .content-panel:last-child) {
+    display: flex;
+    flex: 1;
+  }
+
+  :global(
+    .main-pane > main > .content-panel:last-child > .sl-container
+  ) {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .page-footer {
+    margin-top: auto;
+  }
+
+  .fonij-credit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+
+    margin-block-start: 1.5rem;
+    padding-block: 1rem;
+
+    border-top: 1px solid var(--sl-color-gray-5);
+
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+  }
+
+  .fonij-credit a {
+    color: var(--sl-color-text-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .fonij-credit a:hover {
+    text-decoration: underline;
+  }
+</style>

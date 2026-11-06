@@ -1,0 +1,66 @@
+---
+title: Custom components
+description: Add reusable Astro components to documentation pages with MDX.
+sidebar:
+  order: 2
+---
+
+import Callout from "../../../components/content/Callout.astro";
+
+Use plain Markdown for most documentation. When a page needs reusable UI, embeds, or richer presentation, use an `.mdx` file and import an Astro component from `src/components/content/`.
+
+<Callout title="MDX is opt-in">
+  Keep normal documentation in `.md` files. Use `.mdx` only on pages that
+  actually need components.
+</Callout>
+
+## Create a component
+
+Add an Astro component under:
+
+```text
+src/components/content/
+```
+
+For example:
+
+```astro
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="not-content">
+  <h3>{title}</h3>
+  <slot />
+</section>
+```
+
+The `not-content` class prevents Starlight's default Markdown-content styles from unintentionally styling the component's internal layout.
+
+## Use it in a docs page
+
+Create or rename the page to `.mdx`, then import the component:
+
+```mdx
+---
+title: Architecture decision
+---
+
+import Callout from "../../../components/content/Callout.astro";
+
+# Architecture decision
+
+<Callout title="Why this matters">
+  Components can contain **Markdown-formatted content** through their slot.
+</Callout>
+```
+
+## Keep the boundary clear
+
+Use `src/components/content/` for components authors explicitly place in MDX pages. Use `src/components/starlight/` only for Starlight UI overrides such as the site footer.
+
+Prefer Astro components because they render to static HTML by default. Add React, Vue, Svelte, or another UI framework only when client-side interactivity is a real requirement.
