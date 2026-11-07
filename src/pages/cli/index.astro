@@ -1,0 +1,769 @@
+
+---
+import SiteLayout from "../../components/SiteLayout.astro";
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import WorkflowSteps from "../../components/ui/WorkflowSteps.astro";
+
+const capabilities = [
+  {
+    number: "01",
+    title: "Project initialization",
+    description:
+      "Start new projects using predefined foundations instead of repeating the same setup process.",
+  },
+  {
+    number: "02",
+    title: "Technology-aware foundations",
+    description:
+      "Explore starter templates designed around different project types, frameworks, and technologies.",
+  },
+  {
+    number: "03",
+    title: "Maintainable architecture",
+    description:
+      "Build on foundations that prioritize clear structure, separation of concerns, and long-term maintainability.",
+  },
+  {
+    number: "04",
+    title: "AI-first direction",
+    description:
+      "Move toward a development workflow where AI helps builders make better architectural and implementation decisions.",
+  },
+];
+
+const workflow = [
+  {
+    title: "Define",
+    description:
+      "Describe your product idea and understand the type of project you want to build.",
+  },
+  {
+    title: "Choose",
+    description:
+      "Select a suitable starter based on your product requirements and preferred technology.",
+  },
+  {
+    title: "Initialize",
+    description:
+      "Generate your project using the selected starter foundation.",
+  },
+  {
+    title: "Evolve",
+    description:
+      "Continue developing your product and improve it as requirements grow.",
+  },
+];
+---
+
+<SiteLayout
+  title="Fonij CLI"
+  description="An AI-first product builder CLI designed to help developers initialize and evolve maintainable software projects."
+>
+  <div class="cli-page">
+    <!-- Hero -->
+    <section class="cli-hero">
+      <div class="cli-hero__content">
+        <span class="page-eyebrow">
+          FONIJ CLI
+        </span>
+
+        <h1>
+          From an idea
+          <span>to a working codebase.</span>
+        </h1>
+
+        <p>
+          An AI-first product builder CLI designed to help
+          developers choose the right foundations, initialize
+          maintainable projects, and evolve their products.
+        </p>
+
+        <div class="cli-hero__actions">
+          <a
+            href="https://github.com/FonijBuild"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button--primary"
+          >
+            Explore on GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a href="/starters/" class="button button--secondary">
+            Browse Starters
+          </a>
+        </div>
+
+        <div class="cli-status">
+          <span class="cli-status__dot"></span>
+          <span>Under active development</span>
+        </div>
+      </div>
+
+      <!-- Terminal visual -->
+      <div class="cli-terminal" aria-label="Fonij CLI concept">
+        <div class="cli-terminal__header">
+          <div class="cli-terminal__dots" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <span>fonij-cli</span>
+
+          <span class="cli-terminal__window">Terminal</span>
+        </div>
+
+        <div class="cli-terminal__body">
+          <p class="terminal-muted">
+            # A better way to start building
+          </p>
+
+          <p>
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">fonij</span>
+            <span>init</span>
+          </p>
+
+          <p class="terminal-success">
+            ✓ Project foundation selected
+          </p>
+
+          <p class="terminal-success">
+            ✓ Project structure initialized
+          </p>
+
+          <p class="terminal-success">
+            ✓ Development setup ready
+          </p>
+
+          <p class="terminal-muted">
+            # Ready to build something meaningful.
+          </p>
+
+          <span class="terminal-cursor"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem-section">
+      <SectionHeading
+        eyebrow="The Problem"
+        title="Starting a project shouldn't mean repeating everything."
+        description="Developers often spend valuable time recreating project structures, configuring tools, and making the same initial architectural decisions."
+        align="center"
+      />
+
+      <div class="problem-grid">
+        <article class="problem-card">
+          <span class="problem-card__icon">01</span>
+
+          <h3>Repetitive setup</h3>
+
+          <p>
+            Rebuilding similar project structures and configurations
+            for every new product.
+          </p>
+        </article>
+
+        <article class="problem-card">
+          <span class="problem-card__icon">02</span>
+
+          <h3>Unclear decisions</h3>
+
+          <p>
+            Choosing frameworks, architecture, and tooling without
+            a consistent starting point.
+          </p>
+        </article>
+
+        <article class="problem-card">
+          <span class="problem-card__icon">03</span>
+
+          <h3>Technical inconsistency</h3>
+
+          <p>
+            Different project conventions and structures that
+            become harder to maintain over time.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="capabilities-section">
+      <SectionHeading
+        eyebrow="The Vision"
+        title="A more intentional way to build."
+        description="Fonij CLI brings project foundations and intelligent development workflows into one developer experience."
+        align="center"
+      />
+
+      <div class="capabilities-grid">
+        {
+          capabilities.map((capability) => (
+            <article class="capability-card">
+              <span class="capability-card__number">
+                {capability.number}
+              </span>
+
+              <h3>{capability.title}</h3>
+
+              <p>{capability.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="cli-workflow">
+      <SectionHeading
+        eyebrow="How It Works"
+        title="From project definition to implementation."
+        description="A structured workflow for turning an initial idea into a maintainable software project."
+        align="center"
+      />
+
+      <WorkflowSteps
+        steps={workflow}
+        label="Fonij CLI workflow"
+      />
+    </section>
+
+    <!-- Current development -->
+    <section class="development-section">
+      <div class="development-section__content">
+        <span class="page-eyebrow">
+          CURRENT DEVELOPMENT
+        </span>
+
+        <h2>
+          Building the foundation, one step at a time.
+        </h2>
+
+        <p>
+          Fonij CLI is being developed incrementally.
+          The current focus is making project initialization
+          through reusable, production-ready starter templates
+          simple and reliable.
+        </p>
+
+        <p>
+          The broader direction is an AI-first product building
+          workflow that helps developers make better decisions
+          throughout the lifecycle of their projects.
+        </p>
+
+        <a
+          href="https://github.com/FonijBuild"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-link"
+        >
+          Follow the development on GitHub →
+        </a>
+      </div>
+
+      <div class="development-section__visual" aria-hidden="true">
+        <div class="development-node">
+          <span>IDEA</span>
+        </div>
+
+        <div class="development-connector"></div>
+
+        <div class="development-node development-node--active">
+          <span>STARTER</span>
+        </div>
+
+        <div class="development-connector"></div>
+
+        <div class="development-node">
+          <span>PRODUCT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cli-cta">
+      <span class="page-eyebrow">
+        BUILD WITH FONIJ
+      </span>
+
+      <h2>
+        Better foundations. Better products.
+      </h2>
+
+      <p>
+        Explore the available starter templates and find
+        a better starting point for your next project.
+      </p>
+
+      <a href="/starters/" class="button button--primary">
+        Explore Easy Starters →
+      </a>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .cli-page {
+    overflow: hidden;
+  }
+
+  .page-eyebrow {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hero */
+
+  .cli-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(calc(100% - 2rem), 1200px);
+    min-height: 570px;
+
+    margin-inline: auto;
+    padding-block: 5rem;
+
+    gap: 4rem;
+  }
+
+  .cli-hero__content {
+    flex: 1;
+    max-width: 620px;
+  }
+
+  .cli-hero h1 {
+    margin-block: 1.4rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-weight: 850;
+    letter-spacing: -0.06em;
+    line-height: 1.1;
+  }
+
+  .cli-hero h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .cli-hero__content > p {
+    max-width: 570px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .cli-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    margin-block-start: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    min-height: 3rem;
+    padding-inline: 1.2rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+      transform 160ms ease,
+      background 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .button--primary:hover {
+    background: #5147e5;
+    color: white;
+  }
+
+  .button--secondary {
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-strong);
+  }
+
+  .button--secondary:hover {
+    background: var(--surface-hover);
+    color: var(--text-strong);
+  }
+
+  .cli-status {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    margin-block-start: 2rem;
+
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .cli-status__dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background: #20b981;
+
+    box-shadow: 0 0 12px rgb(32 185 129 / 35%);
+  }
+
+  /* Terminal */
+
+  .cli-terminal {
+    width: min(100%, 470px);
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cli-terminal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 3.2rem;
+    padding-inline: 1rem;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .cli-terminal__dots {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .cli-terminal__dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .cli-terminal__window {
+    opacity: 0.6;
+  }
+
+  .cli-terminal__body {
+    min-height: 245px;
+    padding: 1.5rem;
+
+    color: var(--text);
+    font-family: monospace;
+    font-size: 0.76rem;
+    line-height: 1.7;
+  }
+
+  .cli-terminal__body p {
+    margin-block: 0 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .terminal-muted {
+    color: var(--muted);
+    opacity: 0.75;
+  }
+
+  .terminal-prompt,
+  .terminal-command {
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .terminal-success {
+    color: #20b981;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+
+    width: 7px;
+    height: 14px;
+
+    background: var(--accent);
+    vertical-align: middle;
+  }
+
+  /* Sections */
+
+  .problem-section,
+  .capabilities-section,
+  .cli-workflow {
+    width: min(calc(100% - 2rem), 1200px);
+
+    margin-inline: auto;
+    padding-block: 4rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .problem-card,
+  .capability-card {
+    padding: 1.5rem;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+  }
+
+  .problem-card__icon,
+  .capability-card__number {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .problem-card h3,
+  .capability-card h3 {
+    margin-block: 1.3rem 0.6rem;
+
+    color: var(--text-strong);
+    font-size: 1.1rem;
+    font-weight: 750;
+  }
+
+  .problem-card p,
+  .capability-card p {
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 0.87rem;
+    line-height: 1.8;
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  /* Development */
+
+  .development-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(calc(100% - 2rem), 1200px);
+
+    margin: 4rem auto;
+    padding: clamp(2rem, 5vw, 4rem);
+
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+
+    background: var(--surface);
+
+    gap: 3rem;
+  }
+
+  .development-section__content {
+    max-width: 600px;
+  }
+
+  .development-section h2 {
+    margin-block: 1.2rem;
+
+    color: var(--text-strong);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: -0.045em;
+    line-height: 1.25;
+  }
+
+  .development-section p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-block-start: 1rem;
+
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .text-link:hover {
+    text-decoration: underline;
+  }
+
+  .development-section__visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .development-node {
+    display: grid;
+    place-items: center;
+
+    width: 130px;
+    height: 48px;
+
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+
+    background: var(--surface-soft);
+    color: var(--muted);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .development-node--active {
+    border-color: var(--accent-border);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .development-connector {
+    width: 1px;
+    height: 30px;
+
+    background: var(--accent-border);
+  }
+
+  /* CTA */
+
+  .cli-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(calc(100% - 2rem), 1000px);
+
+    margin: 4rem auto 6rem;
+    padding: clamp(2rem, 6vw, 4rem);
+
+    border: 1px solid var(--accent-border);
+    border-radius: 1.2rem;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        var(--accent-soft),
+        transparent 65%
+      ),
+      var(--surface);
+
+    text-align: center;
+  }
+
+  .cli-cta h2 {
+    max-width: 650px;
+    margin-block: 1rem;
+
+    color: var(--text-strong);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .cli-cta p {
+    max-width: 560px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .cli-cta .button {
+    margin-block-start: 1rem;
+  }
+
+  @media (max-width: 950px) {
+    .cli-hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    .cli-terminal {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .development-section {
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .cli-hero__actions {
+      flex-direction: column;
+    }
+
+    .cli-hero__actions .button {
+      width: 100%;
+    }
+
+    .problem-grid,
+    .capabilities-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .development-section {
+      flex-direction: column;
+    }
+
+    .development-section__visual {
+      align-self: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button {
+      transition: none;
+    }
+  }
+</style>

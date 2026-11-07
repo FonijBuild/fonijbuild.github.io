@@ -1,10 +1,9 @@
+
 ---
 import SiteLayout from "../components/SiteLayout.astro";
 
-import SectionHeading from "../components/ui/SectionHeading.astro";
-
 import EcosystemCard from "../components/ui/EcosystemCard.astro";
-
+import SectionHeading from "../components/ui/SectionHeading.astro";
 import WorkflowSteps from "../components/ui/WorkflowSteps.astro";
 
 const ecosystem = [
@@ -16,15 +15,17 @@ const ecosystem = [
     href: "/handbook/",
     icon: "book",
     tone: "violet",
+    cta: "Explore Handbook",
   },
   {
     title: "Easy Starters",
     description:
-      "Production-capable foundations for different software architectures and technologies.",
+      "Production-ready foundations for different software architectures, frameworks, and technologies.",
     eyebrow: "Start",
     href: "/starters/",
     icon: "layers",
     tone: "blue",
+    cta: "Browse Starters",
   },
   {
     title: "Fonij CLI",
@@ -34,103 +35,240 @@ const ecosystem = [
     href: "/cli/",
     icon: "terminal",
     tone: "green",
+    cta: "Explore CLI",
   },
-];
+] as const;
 
 const steps = [
   {
     title: "Define",
-    description: "Understand your idea and product requirements.",
+    description:
+      "Understand the problem, audience, and requirements behind your product.",
   },
   {
     title: "Learn",
-    description: "Discover the right principles and architecture.",
+    description:
+      "Discover the right principles, practices, and technical architecture.",
   },
   {
     title: "Start",
-    description: "Choose a suitable project foundation.",
+    description:
+      "Choose a suitable production-ready foundation for your project.",
   },
   {
     title: "Build",
-    description: "Develop with maintainable engineering practices.",
+    description:
+      "Develop your product with maintainable code and engineering practices.",
   },
   {
     title: "Ship",
-    description: "Deploy, learn, and continuously improve.",
+    description:
+      "Deploy, gather feedback, and continuously improve your product.",
+  },
+];
+
+const principles = [
+  {
+    number: "01",
+    title: "Practical over theoretical",
+    description:
+      "Focus on knowledge, tools, and workflows that solve real product development problems.",
+  },
+  {
+    number: "02",
+    title: "Maintainability by default",
+    description:
+      "Build on clear architecture and sustainable engineering practices instead of short-term shortcuts.",
+  },
+  {
+    number: "03",
+    title: "AI-first, human-centered",
+    description:
+      "Use AI to reduce repetitive work and help builders focus on meaningful product decisions.",
   },
 ];
 ---
 
 <SiteLayout
   title="FonijBuild"
-  description="An AI-first ecosystem for product builders."
+  description="An AI-first ecosystem combining practical knowledge, production-ready foundations, and intelligent tools for product builders."
 >
-  <section class="hero">
-    <span class="hero__eyebrow">
-      THE PRODUCT BUILDER ECOSYSTEM
-    </span>
+  <main class="home-page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__content">
+        <span class="hero__eyebrow">
+          THE PRODUCT BUILDER ECOSYSTEM
+        </span>
 
-    <h1>
-      Build better products,
-      <span>from idea to production.</span>
-    </h1>
+        <h1>
+          Build better products,
+          <span>from idea to production.</span>
+        </h1>
 
-    <p>
-      An AI-first ecosystem combining practical knowledge,
-      production-ready foundations, and intelligent development tools.
-    </p>
+        <p class="hero__description">
+          An AI-first ecosystem combining practical knowledge,
+          production-ready foundations, and intelligent development
+          tools to help you build software products with confidence.
+        </p>
 
-    <div class="hero__actions">
-      <a href="/handbook/" class="button button--primary">
-        Explore the Handbook
+        <div class="hero__actions">
+          <a
+            href="/handbook/"
+            class="button button--primary"
+          >
+            Explore the Handbook
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            href="/starters/"
+            class="button button--secondary"
+          >
+            Browse Starters
+          </a>
+        </div>
+
+        <div class="hero__meta">
+          <span>Learn</span>
+          <span aria-hidden="true">·</span>
+          <span>Start</span>
+          <span aria-hidden="true">·</span>
+          <span>Build</span>
+          <span aria-hidden="true">·</span>
+          <span>Ship</span>
+        </div>
+      </div>
+
+      <div class="hero__decoration" aria-hidden="true">
+        <div class="hero-orbit hero-orbit--outer"></div>
+        <div class="hero-orbit hero-orbit--inner"></div>
+
+        <div class="hero-core">
+          <span>F</span>
+        </div>
+
+        <span class="orbit-node orbit-node--one">01</span>
+        <span class="orbit-node orbit-node--two">02</span>
+        <span class="orbit-node orbit-node--three">03</span>
+      </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="ecosystem-section">
+      <SectionHeading
+        eyebrow="The Ecosystem"
+        title="Everything you need to build software products."
+        description="From understanding the fundamentals to starting and evolving your product, everything works together."
+        align="center"
+      />
+
+      <div class="ecosystem-grid">
+        {
+          ecosystem.map((item) => (
+            <EcosystemCard {...item} />
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="workflow-section">
+      <SectionHeading
+        eyebrow="Your Journey"
+        title="From idea to production."
+        description="A practical workflow that helps you move from an initial idea to a maintainable, working product."
+        align="center"
+      />
+
+      <WorkflowSteps
+        steps={steps}
+        label="FonijBuild product development workflow"
+      />
+    </section>
+
+    <!-- Principles -->
+    <section class="principles-section">
+      <SectionHeading
+        eyebrow="Our Approach"
+        title="Better ways to build."
+        description="We believe good software comes from better decisions, solid foundations, and thoughtful engineering."
+        align="center"
+      />
+
+      <div class="principles-grid">
+        {
+          principles.map((principle) => (
+            <article class="principle-card">
+              <span class="principle-card__number">
+                {principle.number}
+              </span>
+
+              <h3>{principle.title}</h3>
+
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <span class="final-cta__eyebrow">
+        START BUILDING
+      </span>
+
+      <h2>
+        Your next product starts with a better foundation.
+      </h2>
+
+      <p>
+        Explore the knowledge, tools, and foundations that help
+        turn ideas into real products.
+      </p>
+
+      <a href="/starters/" class="button button--primary">
+        Find Your Starter
+        <span aria-hidden="true">→</span>
       </a>
-
-      <a href="/starters/" class="button button--secondary">
-        Browse Starters
-      </a>
-    </div>
-  </section>
-
-  <section class="ecosystem-section">
-    <SectionHeading
-      eyebrow="The Ecosystem"
-      title="Everything you need to build software products."
-      description="Learn the right practices, start with a solid foundation, and build with the right tools."
-      align="center"
-    />
-
-    <div class="ecosystem-grid">
-      {
-        ecosystem.map((item) => (
-          <EcosystemCard {...item} />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="workflow-section">
-    <SectionHeading
-      eyebrow="Your Journey"
-      title="From idea to production."
-      description="A practical workflow for turning ideas into maintainable products."
-      align="center"
-    />
-
-    <WorkflowSteps steps={steps} />
-  </section>
+    </section>
+  </main>
 </SiteLayout>
 
 <style>
-  .hero {
-    max-width: 1000px;
-    margin: 0 auto;
-
-    padding-block: clamp(5rem, 12vw, 9rem);
-
-    text-align: center;
+  .home-page {
+    overflow: hidden;
   }
 
-  .hero__eyebrow {
+  /* Hero */
+
+  .hero {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(calc(100% - 2rem), 1200px);
+    min-height: 610px;
+
+    margin-inline: auto;
+    padding-block: 5rem;
+
+    gap: 3rem;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+
+    flex: 1;
+    max-width: 760px;
+  }
+
+  .hero__eyebrow,
+  .final-cta__eyebrow {
     color: var(--accent);
 
     font-size: 0.75rem;
@@ -143,10 +281,10 @@ const steps = [
 
     color: var(--text-strong);
 
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 850;
     letter-spacing: -0.065em;
-    line-height: 1.08;
+    line-height: 1.1;
   }
 
   .hero h1 span {
@@ -154,19 +292,18 @@ const steps = [
     color: var(--accent);
   }
 
-  .hero > p {
-    max-width: 660px;
-    margin: 0 auto;
+  .hero__description {
+    max-width: 640px;
+    margin: 0;
 
     color: var(--muted);
 
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.9;
   }
 
   .hero__actions {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 0.8rem;
 
@@ -177,9 +314,10 @@ const steps = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.6rem;
 
     min-height: 3rem;
-    padding-inline: 1.3rem;
+    padding-inline: 1.25rem;
 
     border: 1px solid transparent;
     border-radius: 0.7rem;
@@ -190,7 +328,8 @@ const steps = [
 
     transition:
       transform 160ms ease,
-      background 160ms ease;
+      background 160ms ease,
+      border-color 160ms ease;
   }
 
   .button:hover {
@@ -199,12 +338,12 @@ const steps = [
 
   .button--primary {
     background: var(--accent);
-    color: white;
+    color: #fff;
   }
 
   .button--primary:hover {
     background: #5147e5;
-    color: white;
+    color: #fff;
   }
 
   .button--secondary {
@@ -214,16 +353,121 @@ const steps = [
   }
 
   .button--secondary:hover {
+    border-color: var(--accent-border);
     background: var(--surface-hover);
     color: var(--text-strong);
   }
 
-  .ecosystem-section,
-  .workflow-section {
-    width: min(calc(100% - 2rem), 1200px);
-    margin-inline: auto;
+  .hero__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
 
-    padding-block: 4rem;
+    margin-block-start: 2rem;
+
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 650;
+  }
+
+  /* Hero decoration */
+
+  .hero__decoration {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 340px;
+    height: 340px;
+
+    flex-shrink: 0;
+  }
+
+  .hero-orbit {
+    position: absolute;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 50%;
+  }
+
+  .hero-orbit--outer {
+    width: 310px;
+    height: 310px;
+
+    border-style: dashed;
+    opacity: 0.55;
+  }
+
+  .hero-orbit--inner {
+    width: 205px;
+    height: 205px;
+
+    opacity: 0.85;
+  }
+
+  .hero-core {
+    display: grid;
+    place-items: center;
+
+    width: 110px;
+    height: 110px;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 2rem;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+
+    box-shadow: 0 0 80px var(--accent-soft);
+
+    font-size: 3.5rem;
+    font-weight: 850;
+  }
+
+  .orbit-node {
+    position: absolute;
+
+    display: grid;
+    place-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+
+    background: var(--surface);
+    color: var(--accent);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .orbit-node--one {
+    top: 25px;
+    inset-inline-start: 45px;
+  }
+
+  .orbit-node--two {
+    top: 145px;
+    inset-inline-end: 0;
+  }
+
+  .orbit-node--three {
+    bottom: 10px;
+    inset-inline-start: 110px;
+  }
+
+  /* Sections */
+
+  .ecosystem-section,
+  .workflow-section,
+  .principles-section {
+    width: min(calc(100% - 2rem), 1200px);
+
+    margin-inline: auto;
+    padding-block: 5rem;
   }
 
   .ecosystem-grid {
@@ -232,19 +476,167 @@ const steps = [
     gap: 1.2rem;
   }
 
-  @media (max-width: 850px) {
-    .ecosystem-grid {
+  /* Principles */
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .principle-card {
+    padding: 1.5rem;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+  }
+
+  .principle-card__number {
+    color: var(--accent);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .principle-card h3 {
+    margin-block: 1.3rem 0.6rem;
+
+    color: var(--text-strong);
+    font-size: 1.1rem;
+    font-weight: 750;
+  }
+
+  .principle-card p {
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  /* Final CTA */
+
+  .final-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(calc(100% - 2rem), 1000px);
+
+    margin: 4rem auto 6rem;
+    padding: clamp(2rem, 6vw, 4rem);
+
+    border: 1px solid var(--accent-border);
+    border-radius: 1.4rem;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        var(--accent-soft),
+        transparent 65%
+      ),
+      var(--surface);
+
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    max-width: 650px;
+    margin-block: 1rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.25;
+  }
+
+  .final-cta p {
+    max-width: 570px;
+    margin: 0;
+
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .final-cta .button {
+    margin-block-start: 1.8rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      min-height: auto;
+      padding-block: 5rem;
+    }
+
+    .hero__decoration {
+      width: 250px;
+      height: 250px;
+    }
+
+    .hero-orbit--outer {
+      width: 235px;
+      height: 235px;
+    }
+
+    .hero-orbit--inner {
+      width: 155px;
+      height: 155px;
+    }
+
+    .hero-core {
+      width: 85px;
+      height: 85px;
+      font-size: 2.7rem;
+    }
+
+    .orbit-node--two {
+      inset-inline-end: -5px;
+    }
+
+    .ecosystem-grid,
+    .principles-grid {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 640px) {
+    .hero {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero__decoration {
+      align-self: center;
+      margin-block-start: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
     .hero__actions {
       flex-direction: column;
     }
 
-    .button {
+    .hero__actions .button {
       width: 100%;
+    }
+
+    .ecosystem-section,
+    .workflow-section,
+    .principles-section {
+      padding-block: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button {
+      transition: none;
     }
   }
 </style>

@@ -1,0 +1,621 @@
+
+---
+import SiteLayout from "../../components/SiteLayout.astro";
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import WorkflowSteps from "../../components/ui/WorkflowSteps.astro";
+
+import StarterGrid from "../../components/ui/StarterGrid.astro";
+
+import { starters } from "../../data/starters";
+
+const selectionSteps = [
+  {
+    title: "Define your needs",
+    description:
+      "Understand your product type, requirements, and preferred technologies.",
+  },
+  {
+    title: "Explore foundations",
+    description:
+      "Compare available starters and choose the architecture that fits your project.",
+  },
+  {
+    title: "Start building",
+    description:
+      "Use the starter as your foundation and evolve it as your product grows.",
+  },
+];
+
+const benefits = [
+  {
+    number: "01",
+    title: "Thoughtful architecture",
+    description:
+      "Start with a clear project structure and sensible architectural decisions.",
+  },
+  {
+    number: "02",
+    title: "Modern technologies",
+    description:
+      "Explore foundations built around modern frameworks and development tools.",
+  },
+  {
+    number: "03",
+    title: "Built to evolve",
+    description:
+      "Choose foundations that prioritize maintainability and future development.",
+  },
+];
+---
+
+<SiteLayout
+  title="Easy Starters"
+  description="Explore production-ready software starter templates for different product types, architectures, and technologies."
+>
+  <div class="starters-page">
+    <!-- Hero -->
+    <section class="starters-hero">
+      <div class="starters-hero__content">
+        <span class="page-eyebrow">
+          EASY STARTERS
+        </span>
+
+        <h1>
+          Don't start from scratch.
+          <span>Start with the right foundation.</span>
+        </h1>
+
+        <p>
+          Explore production-ready starter templates designed
+          to help you build software products with better
+          architecture, modern technologies, and maintainable code.
+        </p>
+
+        <div class="starters-hero__actions">
+          <a href="#starter-catalog" class="button button--primary">
+            Explore Starters
+            <span aria-hidden="true">↓</span>
+          </a>
+
+          <a href="/cli/" class="button button--secondary">
+            Discover Fonij CLI
+          </a>
+        </div>
+      </div>
+
+      <div class="starters-hero__visual" aria-hidden="true">
+        <div class="starter-visual-card starter-visual-card--back">
+          <span>Architecture</span>
+          <div class="visual-lines">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+
+        <div class="starter-visual-card starter-visual-card--middle">
+          <span>Configuration</span>
+          <div class="visual-lines">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+
+        <div class="starter-visual-card starter-visual-card--front">
+          <div class="visual-terminal">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+          </div>
+
+          <code>project/</code>
+          <code>├── src/</code>
+          <code>├── packages/</code>
+          <code>├── tests/</code>
+          <code>└── README.md</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section
+      id="starter-catalog"
+      class="catalog-section"
+    >
+      <SectionHeading
+        eyebrow="The Catalog"
+        title="Find the right starting point."
+        description="Explore the available foundations and find a starter that matches your product requirements and technology preferences."
+        align="left"
+      />
+
+      {
+        starters.length > 0 ? (
+          <StarterGrid
+            starters={starters}
+            columns={3}
+            showSearch
+            locale="en"
+          />
+        ) : (
+          <div class="catalog-empty">
+            <span class="catalog-empty__icon" aria-hidden="true">
+              ◇
+            </span>
+
+            <h3>Starter catalog is being prepared.</h3>
+
+            <p>
+              New starter foundations are being organized.
+              Check the FonijBuild GitHub organization for available projects.
+            </p>
+
+            <a
+              href="https://github.com/FonijBuild"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore GitHub →
+            </a>
+          </div>
+        )
+      }
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+      <SectionHeading
+        eyebrow="Why Easy Starters"
+        title="A better way to begin."
+        description="The goal isn't just to generate files. It's to give your project a foundation that makes sense."
+        align="center"
+      />
+
+      <div class="benefits-grid">
+        {
+          benefits.map((benefit) => (
+            <article class="benefit-card">
+              <span class="benefit-card__number">
+                {benefit.number}
+              </span>
+
+              <h3>{benefit.title}</h3>
+
+              <p>{benefit.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Selection workflow -->
+    <section class="selection-section">
+      <SectionHeading
+        eyebrow="Getting Started"
+        title="Three steps to your next project."
+        description="Choose a suitable foundation and spend less time on repetitive setup."
+        align="center"
+      />
+
+      <WorkflowSteps
+        steps={selectionSteps}
+        label="Easy Starters selection workflow"
+      />
+    </section>
+
+    <!-- CTA -->
+    <section class="starters-cta">
+      <span class="page-eyebrow">
+        BUILD WITH FONIJ
+      </span>
+
+      <h2>
+        Ready to turn your idea into a real project?
+      </h2>
+
+      <p>
+        Explore Fonij CLI and discover a more efficient
+        workflow for initializing software projects.
+      </p>
+
+      <a href="/cli/" class="button button--primary">
+        Explore Fonij CLI →
+      </a>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .starters-page {
+    overflow: hidden;
+  }
+
+  .page-eyebrow {
+    color: var(--accent);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hero */
+
+  .starters-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(calc(100% - 2rem), 1200px);
+    min-height: 510px;
+
+    margin-inline: auto;
+    padding-block: 5rem;
+
+    gap: 4rem;
+  }
+
+  .starters-hero__content {
+    flex: 1;
+    max-width: 700px;
+  }
+
+  .starters-hero h1 {
+    margin-block: 1.4rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 850;
+    letter-spacing: -0.06em;
+    line-height: 1.12;
+  }
+
+  .starters-hero h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .starters-hero__content > p {
+    max-width: 620px;
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .starters-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    margin-block-start: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    min-height: 3rem;
+    padding-inline: 1.2rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+      transform 160ms ease,
+      background 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .button--primary:hover {
+    background: #5147e5;
+    color: #fff;
+  }
+
+  .button--secondary {
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-strong);
+  }
+
+  .button--secondary:hover {
+    background: var(--surface-hover);
+    color: var(--text-strong);
+  }
+
+  /* Hero visual */
+
+  .starters-hero__visual {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 380px;
+    height: 320px;
+
+    flex-shrink: 0;
+  }
+
+  .starter-visual-card {
+    position: absolute;
+
+    width: 260px;
+    padding: 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  .starter-visual-card--back {
+    top: 0;
+    inset-inline-end: 0;
+
+    opacity: 0.5;
+    transform: rotate(8deg);
+  }
+
+  .starter-visual-card--middle {
+    top: 35px;
+    inset-inline-start: 0;
+
+    opacity: 0.75;
+    transform: rotate(-6deg);
+  }
+
+  .starter-visual-card--front {
+    z-index: 2;
+
+    top: 85px;
+    inset-inline-start: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+
+    padding: 1.1rem;
+  }
+
+  .starter-visual-card > span {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .visual-lines {
+    display: grid;
+    gap: 0.4rem;
+    margin-block-start: 0.8rem;
+  }
+
+  .visual-lines i {
+    width: 85%;
+    height: 5px;
+
+    border-radius: 5px;
+    background: var(--accent-soft);
+  }
+
+  .visual-lines i:nth-child(2) {
+    width: 65%;
+  }
+
+  .visual-lines i:nth-child(3) {
+    width: 75%;
+  }
+
+  .visual-terminal {
+    display: flex;
+    gap: 0.3rem;
+
+    padding-block-end: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  .starter-visual-card--front code {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: monospace;
+  }
+
+  .starter-visual-card--front code:first-of-type {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Catalog */
+
+  .catalog-section,
+  .benefits-section,
+  .selection-section {
+    width: min(calc(100% - 2rem), 1200px);
+
+    margin-inline: auto;
+    padding-block: 4rem;
+  }
+
+  .catalog-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 4rem 1.5rem;
+
+    border: 1px dashed var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .catalog-empty__icon {
+    color: var(--accent);
+    font-size: 2rem;
+  }
+
+  .catalog-empty h3 {
+    margin-block: 1rem 0.5rem;
+    color: var(--text-strong);
+    font-size: 1.2rem;
+  }
+
+  .catalog-empty p {
+    max-width: 480px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .catalog-empty a {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* Benefits */
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .benefit-card {
+    padding: 1.5rem;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+  }
+
+  .benefit-card__number {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .benefit-card h3 {
+    margin-block: 1.3rem 0.6rem;
+
+    color: var(--text-strong);
+    font-size: 1.1rem;
+    font-weight: 750;
+  }
+
+  .benefit-card p {
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 0.87rem;
+    line-height: 1.8;
+  }
+
+  /* CTA */
+
+  .starters-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(calc(100% - 2rem), 1000px);
+
+    margin: 4rem auto 6rem;
+    padding: clamp(2rem, 6vw, 4rem);
+
+    border: 1px solid var(--accent-border);
+    border-radius: 1.2rem;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        var(--accent-soft),
+        transparent 65%
+      ),
+      var(--surface);
+
+    text-align: center;
+  }
+
+  .starters-cta h2 {
+    max-width: 650px;
+    margin-block: 1rem;
+
+    color: var(--text-strong);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .starters-cta p {
+    max-width: 550px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .starters-cta .button {
+    margin-block-start: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .starters-hero {
+      gap: 1rem;
+    }
+
+    .starters-hero__visual {
+      width: 300px;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .starters-hero {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .starters-hero__visual {
+      align-self: center;
+      max-width: 100%;
+    }
+
+    .starters-hero__actions {
+      flex-direction: column;
+    }
+
+    .starters-hero__actions .button {
+      width: 100%;
+    }
+  }
+</style>

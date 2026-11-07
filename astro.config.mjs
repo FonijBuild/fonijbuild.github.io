@@ -1,45 +1,16 @@
 // @ts-check
-import { existsSync, readFileSync } from "node:fs";
-
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 
 const repository = process.env.GITHUB_REPOSITORY;
-const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER;
-const repositoryName = repository?.split("/")[1];
-
-const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
-
-const isRootPagesRepository =
-  repositoryOwner &&
-  repositoryName &&
-  repositoryName.toLowerCase() === `${repositoryOwner.toLowerCase()}.github.io`;
-
-const customDomain = getCustomDomain();
-
-const site = customDomain
-  ? `https://${customDomain}`
-  : isGitHubActions && repositoryOwner
-    ? `https://${repositoryOwner.toLowerCase()}.github.io`
-    : undefined;
-
-const base =
-  customDomain || isRootPagesRepository
-    ? "/"
-    : isGitHubActions && repositoryName
-      ? `/${repositoryName}`
-      : "/";
 
 const githubUrl = repository
   ? `${process.env.GITHUB_SERVER_URL ?? "https://github.com"}/${repository}`
   : undefined;
 
-const editBaseUrl = githubUrl ? `${githubUrl}/edit/main/` : undefined;
-
-// https://astro.build/config
 export default defineConfig({
-  ...(site ? { site } : {}),
-  base,
+  site: "https://fonijbuild.github.io",
+  base: "/",
   integrations: [
     starlight({
       title: "Product Builder Handbook",
@@ -56,37 +27,13 @@ export default defineConfig({
         ThemeSelect: "./src/components/overrides/ThemeToggle.astro",
       },
       pagination: false,
-      ...(githubUrl
-        ? {
-            social: [
-              {
-                icon: "github",
-                label: "GitHub repository",
-                href: githubUrl,
-              },
-            ],
-          }
-        : {}),
-
-      ...(editBaseUrl
-        ? {
-            editLink: {
-              baseUrl: editBaseUrl,
-            },
-          }
-        : {}),
+      social: [
+        {
+          icon: "github",
+          label: "GitHub repository",
+          href: "https://github.com/FonijBuild",
+        },
+      ],
     }),
   ],
 });
-
-function getCustomDomain() {
-  const cnamePath = new URL("./public/CNAME", import.meta.url);
-
-  if (!existsSync(cnamePath)) {
-    return undefined;
-  }
-
-  const value = readFileSync(cnamePath, "utf8").trim();
-
-  return value || undefined;
-}

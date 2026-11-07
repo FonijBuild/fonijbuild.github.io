@@ -1,0 +1,618 @@
+
+---
+import SiteLayout from "../../components/SiteLayout.astro";
+
+import EcosystemCard from "../../components/ui/EcosystemCard.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+const values = [
+  {
+    number: "01",
+    title: "Open knowledge",
+    description:
+      "Useful knowledge should be accessible, understandable, and shareable. We believe learning becomes more valuable when people can build on each other's experience.",
+  },
+  {
+    number: "02",
+    title: "Thoughtful engineering",
+    description:
+      "Good software is more than working code. Architecture, maintainability, simplicity, and long-term thinking matter.",
+  },
+  {
+    number: "03",
+    title: "Practical impact",
+    description:
+      "We focus on resources and tools that solve real problems and help builders move forward with confidence.",
+  },
+  {
+    number: "04",
+    title: "Continuous improvement",
+    description:
+      "Products, tools, and knowledge should evolve through experimentation, feedback, and shared learning.",
+  },
+];
+
+const ecosystem = [
+  {
+    title: "Product Builder Handbook",
+    description:
+      "Learn the principles and practices behind building software products.",
+    eyebrow: "Learn",
+    href: "/handbook/",
+    icon: "book",
+    tone: "violet",
+    cta: "Explore Handbook",
+  },
+  {
+    title: "Easy Starters",
+    description:
+      "Start projects with reusable and maintainable foundations.",
+    eyebrow: "Start",
+    href: "/starters/",
+    icon: "layers",
+    tone: "blue",
+    cta: "Browse Starters",
+  },
+  {
+    title: "Fonij CLI",
+    description:
+      "A developer tool designed to improve the product building workflow.",
+    eyebrow: "Build",
+    href: "/cli/",
+    icon: "terminal",
+    tone: "green",
+    cta: "Explore CLI",
+  },
+] as const;
+---
+
+<SiteLayout
+  title="About"
+  description="Learn about FonijBuild, an ecosystem built to make software product development more accessible, practical, and maintainable."
+>
+  <div class="about-page">
+    <!-- Hero -->
+    <section class="about-hero">
+      <span class="page-eyebrow">
+        ABOUT FONIJBUILD
+      </span>
+
+      <h1>
+        Building software
+        <span>should be easier to do well.</span>
+      </h1>
+
+      <p>
+        FonijBuild is an ecosystem for product builders,
+        bringing together practical knowledge, reusable
+        project foundations, and intelligent development tools.
+      </p>
+
+      <div class="about-hero__actions">
+        <a
+          href="/handbook/"
+          class="button button--primary"
+        >
+          Explore the Handbook
+        </a>
+
+        <a
+          href="https://github.com/FonijBuild"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button button--secondary"
+        >
+          Visit GitHub ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+      <div class="mission-section__label">
+        <span class="page-eyebrow">OUR PURPOSE</span>
+      </div>
+
+      <div class="mission-section__content">
+        <h2>
+          Making the process of building software products
+          more accessible, practical, and sustainable.
+        </h2>
+
+        <p>
+          Building a product involves more than writing code.
+          It requires understanding problems, making decisions,
+          choosing the right technologies, designing architecture,
+          and continuously improving what we build.
+        </p>
+
+        <p>
+          FonijBuild brings useful resources and tools together
+          to make that journey more straightforward.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section">
+      <SectionHeading
+        eyebrow="Our Principles"
+        title="What guides the way we build."
+        description="These principles shape the knowledge, tools, and foundations we create."
+        align="center"
+      />
+
+      <div class="values-grid">
+        {
+          values.map((value) => (
+            <article class="value-card">
+              <span class="value-card__number">
+                {value.number}
+              </span>
+
+              <h3>{value.title}</h3>
+
+              <p>{value.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="about-ecosystem">
+      <SectionHeading
+        eyebrow="One Ecosystem"
+        title="Three ways to move forward."
+        description="Each part of FonijBuild addresses a different stage of the product building journey."
+        align="center"
+      />
+
+      <div class="about-ecosystem__grid">
+        {
+          ecosystem.map((item) => (
+            <EcosystemCard {...item} />
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Community -->
+    <section class="community-section">
+      <div class="community-section__content">
+        <span class="page-eyebrow">
+          OPEN COLLABORATION
+        </span>
+
+        <h2>
+          Built to be shared and improved.
+        </h2>
+
+        <p>
+          FonijBuild grows through learning, experimentation,
+          feedback, and collaboration.
+        </p>
+
+        <p>
+          Whether you want to explore the resources, use a starter,
+          contribute to a project, or share an idea, you're welcome
+          to be part of the journey.
+        </p>
+
+        <a
+          href="https://github.com/FonijBuild"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button button--primary"
+        >
+          Explore GitHub →
+        </a>
+      </div>
+
+      <div class="community-section__visual" aria-hidden="true">
+        <div class="community-symbol">
+          <span>F</span>
+        </div>
+
+        <span class="community-orbit community-orbit--one"></span>
+        <span class="community-orbit community-orbit--two"></span>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy-section">
+      <span class="philosophy-section__mark" aria-hidden="true">
+        “
+      </span>
+
+      <blockquote>
+        What do we build for, if not to lessen each other's hardship?
+      </blockquote>
+
+      <p>
+        The idea behind FonijBuild.
+      </p>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .about-page {
+    overflow: hidden;
+  }
+
+  .page-eyebrow {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hero */
+
+  .about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(calc(100% - 2rem), 1000px);
+    min-height: 480px;
+
+    margin-inline: auto;
+    padding-block: 7rem 5rem;
+
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    max-width: 850px;
+    margin-block: 1.5rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    font-weight: 850;
+    letter-spacing: -0.06em;
+    line-height: 1.12;
+  }
+
+  .about-hero h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .about-hero > p {
+    max-width: 680px;
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  .about-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+
+    margin-block-start: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    min-height: 3rem;
+    padding-inline: 1.2rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+      transform 160ms ease,
+      background 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .button--primary:hover {
+    background: #5147e5;
+    color: #fff;
+  }
+
+  .button--secondary {
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-strong);
+  }
+
+  .button--secondary:hover {
+    background: var(--surface-hover);
+    color: var(--text-strong);
+  }
+
+  /* Mission */
+
+  .mission-section {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 3rem;
+
+    width: min(calc(100% - 2rem), 1100px);
+
+    margin: 2rem auto;
+    padding-block: 4rem;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mission-section__content {
+    max-width: 750px;
+  }
+
+  .mission-section h2 {
+    margin: 0 0 1.5rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.3;
+  }
+
+  .mission-section p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.9;
+  }
+
+  /* Values */
+
+  .values-section,
+  .about-ecosystem {
+    width: min(calc(100% - 2rem), 1200px);
+
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .value-card {
+    padding: 1.7rem;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+  }
+
+  .value-card__number {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .value-card h3 {
+    margin-block: 1.2rem 0.6rem;
+
+    color: var(--text-strong);
+    font-size: 1.1rem;
+    font-weight: 750;
+  }
+
+  .value-card p {
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  /* Ecosystem */
+
+  .about-ecosystem__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  /* Community */
+
+  .community-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(calc(100% - 2rem), 1100px);
+
+    margin: 3rem auto;
+    padding: clamp(2rem, 5vw, 4rem);
+
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+
+    background: var(--surface);
+
+    gap: 3rem;
+  }
+
+  .community-section__content {
+    max-width: 600px;
+  }
+
+  .community-section h2 {
+    margin-block: 1.2rem;
+
+    color: var(--text-strong);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: -0.045em;
+  }
+
+  .community-section p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+
+  .community-section .button {
+    margin-block-start: 1rem;
+  }
+
+  .community-section__visual {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 230px;
+    height: 230px;
+
+    flex-shrink: 0;
+  }
+
+  .community-symbol {
+    z-index: 1;
+
+    display: grid;
+    place-items: center;
+
+    width: 95px;
+    height: 95px;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 1.7rem;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+
+    font-size: 3rem;
+    font-weight: 850;
+  }
+
+  .community-orbit {
+    position: absolute;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 50%;
+  }
+
+  .community-orbit--one {
+    width: 155px;
+    height: 155px;
+  }
+
+  .community-orbit--two {
+    width: 220px;
+    height: 220px;
+    border-style: dashed;
+    opacity: 0.5;
+  }
+
+  /* Philosophy */
+
+  .philosophy-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(calc(100% - 2rem), 900px);
+
+    margin: 5rem auto 7rem;
+
+    text-align: center;
+  }
+
+  .philosophy-section__mark {
+    color: var(--accent);
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .philosophy-section blockquote {
+    max-width: 800px;
+    margin: 0;
+
+    color: var(--text-strong);
+
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 750;
+    letter-spacing: -0.04em;
+    line-height: 1.4;
+  }
+
+  .philosophy-section p {
+    margin-block-start: 1.5rem;
+
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 900px) {
+    .mission-section {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .about-ecosystem__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .community-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .community-section__visual {
+      align-self: center;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .about-hero {
+      padding-block: 5rem 3rem;
+    }
+
+    .about-hero__actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .about-hero__actions .button {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button {
+      transition: none;
+    }
+  }
+</style>
