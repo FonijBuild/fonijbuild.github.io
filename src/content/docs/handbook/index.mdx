@@ -1,0 +1,145 @@
+---
+title: "Product Builder Handbook"
+description: "Practical principles, patterns, and lessons for building, shipping, and selling modern software products in the AI era."
+template: splash
+sidebar:
+  hidden: true
+---
+
+import ProductCard from "../../../components/ui/ProductCard.astro";
+
+<div class="home-wrapper">
+  <header class="home-intro">
+    <h1>What Do You Want to Build?</h1>
+
+    <p class="home-intro__description">
+      From your first idea to a production-ready product.
+      Choose your product type and follow a practical,
+      step-by-step guide to build it the right way.
+    </p>
+
+  </header>
+
+  <section
+    class="home-paths"
+    aria-labelledby="product-paths-title"
+  >
+    <div class="home-section-heading">
+      <h2 id="product-paths-title">Choose Your Product</h2>
+      <span class="home-section-count">12 BUILD PATHS</span>
+    </div>
+
+    <div class="product-grid">
+
+      <ProductCard
+        index="01"
+        title="Web App"
+        description="SaaS products, dashboards, customer portals, and interactive web experiences."
+        href="/handbook/build-web-app/"
+        icon="web"
+        tone="violet"
+      />
+
+      <ProductCard
+        index="02"
+        title="Mobile App"
+        description="iOS and Android applications built around mobile-first experiences and native capabilities."
+        href="/handbook/build-mobile-app/"
+        icon="mobile"
+        tone="blue"
+      />
+
+      <ProductCard
+        index="03"
+        title="Blog"
+        description="Editorial websites, content platforms, and modern publishing workflows."
+        href="/handbook/build-blog/"
+        icon="blog"
+        tone="green"
+      />
+
+      <ProductCard
+        index="04"
+        title="AI App"
+        description="LLM-powered products, AI agents, RAG systems, and intelligent user experiences."
+        href="/handbook/build-ai-app/"
+        icon="ai"
+        tone="indigo"
+      />
+
+      <ProductCard
+        index="05"
+        title="Portfolio"
+        description="Personal websites that showcase your work, case studies, skills, and expertise."
+        href="/handbook/build-portfolio/"
+        icon="portfolio"
+        tone="blue"
+      />
+
+      <ProductCard
+        index="06"
+        title="CLI"
+        description="Command-line tools for developers, automation, and repeatable workflows."
+        href="/handbook/build-cli/"
+        icon="terminal"
+        tone="violet"
+      />
+
+      <ProductCard
+        index="07"
+        title="Python Package"
+        description="Reusable Python libraries designed to be packaged, distributed, and maintained."
+        href="/handbook/build-python-package/"
+        icon="package"
+        tone="green"
+      />
+
+      <ProductCard
+        index="08"
+        title="Documentation Website"
+        description="Product documentation, developer guides, knowledge bases, and API references."
+        href="/handbook/build-documentation-website/"
+        icon="docs"
+        tone="indigo"
+      />
+
+      <ProductCard
+        index="09"
+        title="LLM"
+        description="Language model foundations, fine-tuning, evaluation, and inference workflows."
+        href="/handbook/build-llm/"
+        icon="llm"
+        tone="violet"
+      />
+
+      <ProductCard
+        index="10"
+        title="API"
+        description="Backend services, REST endpoints, integrations, and application contracts."
+        href="/handbook/build-api/"
+        icon="api"
+        tone="blue"
+      />
+
+      <ProductCard
+        index="11"
+        title="Browser Extension"
+        description="Browser tools that improve workflows across Chrome and other browsers."
+        href="/handbook/build-browser-extension/"
+        icon="extension"
+        tone="green"
+      />
+
+      <ProductCard
+        index="12"
+        title="TypeScript Monorepo"
+        description="Full-stack TypeScript workspaces with shared packages and independently deployable applications."
+        href="/handbook/build-typescript-monorepo/"
+        icon="monorepo"
+        tone="indigo"
+      />
+
+    </div>
+
+  </section>
+</div>
