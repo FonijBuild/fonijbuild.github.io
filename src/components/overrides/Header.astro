@@ -1,0 +1,278 @@
+---
+import config from "virtual:starlight/user-config";
+
+import LanguageSelect from "virtual:starlight/components/LanguageSelect";
+import Search from "virtual:starlight/components/Search";
+import SiteTitle from "virtual:starlight/components/SiteTitle";
+import SocialIcons from "virtual:starlight/components/SocialIcons";
+import ThemeSelect from "virtual:starlight/components/ThemeSelect";
+
+const route = Astro.locals.starlightRoute;
+
+const localePrefix = route.locale
+  ? `/${route.locale}`
+  : "";
+
+const labels = {
+      handbook: "Handbook",
+      home: "Home",
+      starters: "Easy Starters",
+      cli: "Fonij CLI",
+      about: "About",
+      menu: "Menu",
+      navigation: "Ecosystem navigation",
+    };
+
+const navItems = [
+  {
+    label: labels.home,
+    href: `${localePrefix}/`,
+  },
+  {
+    label: labels.handbook,
+    href: `${localePrefix}/handbook/`,
+  },
+  {
+    label: labels.starters,
+    href: `${localePrefix}/starters/`,
+  },
+  {
+    label: labels.cli,
+    href: `${localePrefix}/cli/`,
+  },
+  {
+    label: labels.about,
+    href: `${localePrefix}/about/`,
+  },
+];
+
+const shouldRenderSearch =
+  config.pagefind ||
+  config.components.Search !==
+    "@astrojs/starlight/components/Search.astro";
+---
+
+<div class="header">
+  <!-- Site title -->
+  <div class="title-wrapper">
+    <SiteTitle />
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrapper print:hidden">
+    {shouldRenderSearch && <Search />}
+  </div>
+
+  <!-- Desktop actions -->
+  <div class="right-group print:hidden">
+    <nav class="ecosystem-nav" aria-label={labels.navigation}>
+      {
+        navItems.map((item) => (
+          <a href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="social-icons">
+      <SocialIcons />
+    </div>
+
+    <ThemeSelect />
+
+    <LanguageSelect />
+  </div>
+
+  <!-- Mobile navigation -->
+  <details class="mobile-nav print:hidden">
+    <summary aria-label={labels.menu}>
+      <svg
+        viewBox="0 0 24 24"
+        width="21"
+        height="21"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </summary>
+
+    <nav aria-label={labels.navigation}>
+      {
+        navItems.map((item) => (
+          <a href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </details>
+</div>
+
+<style>
+  @layer starlight.core {
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      height: 100%;
+
+      gap: var(--sl-nav-gap);
+    }
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+
+      min-width: 0;
+
+      padding: 0.25rem;
+      margin: -0.25rem;
+
+      overflow: clip;
+    }
+
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+
+      flex: 1;
+      min-width: 0;
+    }
+
+    .right-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      flex-shrink: 0;
+      gap: 1rem;
+    }
+
+    .ecosystem-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    .ecosystem-nav a {
+      color: var(--sl-color-gray-2);
+
+      font-size: 0.78rem;
+      font-weight: 600;
+
+      text-decoration: none;
+      white-space: nowrap;
+
+      transition: color 150ms ease;
+    }
+
+    .ecosystem-nav a:hover {
+      color: var(--sl-color-text-accent);
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+
+      padding-inline-end: 1rem;
+
+      border-inline-end: 1px solid var(--sl-color-gray-5);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: relative;
+    }
+
+    .mobile-nav summary {
+      display: grid;
+      place-items: center;
+
+      width: 2.5rem;
+      height: 2.5rem;
+
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.65rem;
+
+      color: var(--sl-color-text);
+      cursor: pointer;
+
+      list-style: none;
+    }
+
+    .mobile-nav summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-nav nav {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      inset-inline-end: 0;
+
+      display: grid;
+      gap: 0.25rem;
+
+      width: 13rem;
+      padding: 0.5rem;
+
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.8rem;
+
+      background: var(--sl-color-bg-nav);
+
+      box-shadow: 0 12px 35px rgb(0 0 0 / 15%);
+    }
+
+    .mobile-nav nav a {
+      padding: 0.7rem 0.8rem;
+
+      border-radius: 0.45rem;
+
+      color: var(--sl-color-text);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .mobile-nav nav a:hover {
+      background: var(--sl-color-gray-6);
+    }
+
+    @media (min-width: 50rem) {
+      .header {
+        display: grid;
+
+        grid-template-columns:
+          minmax(0, auto)
+          minmax(8rem, 1fr)
+          auto;
+
+        align-content: center;
+      }
+
+      .search-wrapper {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 49.99rem) {
+      .right-group {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .search-wrapper {
+        justify-content: flex-end;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+const labels = {
+  light: "Switch to light theme",
+  dark: "Switch to dark theme",
+};
+---
+
+<button
+  class="theme-toggle"
+  type="button"
+  data-theme-toggle
+  data-label-light={labels.light}
+  data-label-dark={labels.dark}
+  aria-label="Switch color theme"
+  title="Switch color theme"
+>
+  <!-- Sun -->
+  <svg
+    class="theme-icon theme-icon--sun"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42
+      M17.65 17.65l1.42 1.42M2 12h2M20 12h2
+      M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"
+    />
+  </svg>
+
+  <!-- Moon -->
+  <svg
+    class="theme-icon theme-icon--moon"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+  </svg>
+</button>
+
+<script>
+  const storageKey = "starlight-theme";
+
+  const root = document.documentElement;
+
+  const media = window.matchMedia("(prefers-color-scheme: light)");
+
+  function getTheme(): "light" | "dark" {
+    const saved = localStorage.getItem(storageKey);
+
+    if (saved === "light" || saved === "dark") {
+      return saved;
+    }
+
+    return media.matches ? "light" : "dark";
+  }
+
+  function applyTheme(theme: "light" | "dark") {
+    root.dataset.theme = theme;
+
+    document.querySelectorAll<HTMLButtonElement>(
+      "[data-theme-toggle]",
+    ).forEach((button) => {
+      const label =
+        theme === "dark"
+          ? button.dataset.labelLight
+          : button.dataset.labelDark;
+
+      if (label) {
+        button.setAttribute("aria-label", label);
+        button.setAttribute("title", label);
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  ).forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextTheme =
+        root.dataset.theme === "dark" ? "light" : "dark";
+
+      localStorage.setItem(storageKey, nextTheme);
+
+      applyTheme(nextTheme);
+    });
+  });
+
+  media.addEventListener("change", () => {
+    if (!localStorage.getItem(storageKey)) {
+      applyTheme(getTheme());
+    }
+  });
+
+  applyTheme(getTheme());
+</script>
+
+<style>
+  .theme-toggle {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+
+    background: var(--surface);
+    color: var(--muted);
+
+    cursor: pointer;
+
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    background: var(--surface-hover);
+    color: var(--text-strong);
+    transform: translateY(-1px);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 3px solid var(--accent-soft);
+    outline-offset: 3px;
+  }
+
+  .theme-icon {
+    position: absolute;
+
+    width: 1.15rem;
+    height: 1.15rem;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-icon--sun {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  :global(:root[data-theme="dark"]) .theme-icon--moon {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  :global(:root[data-theme="light"]) .theme-icon--sun {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  :global(:root[data-theme="light"]) .theme-icon--moon {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>

@@ -42,45 +42,20 @@ export default defineConfig({
   base,
   integrations: [
     starlight({
-      // If you need to customize the title for each locale,
-      // else just use: title: 'Your Title'
-      title: {
-        en: "Easy Docs",
-        fa: "مستندات آسان",
-      },
+      title: "Product Builder Handbook",
       description:
-        "Astro Starlight foundation for Markdown-first documentation and knowledge sites.",
+        "Documentation and practical guides for building maintainable, scalable products in the AI era.",
       logo: {
-        src: "./src/assets/yourlogo.svg",
-        // Uncomment below line if your logo has the title inside
-        // replacesTitle: true,
-
-        // In case you have separate dark/light logo
-        // light: './src/assets/light-logo.svg',
-        // dark: './src/assets/dark-logo.svg',
+        src: "./src/assets/logo.svg",
       },
       favicon: "/images/favicon.svg",
-      // Set English as the default language for this site.
-      defaultLocale: "root",
-      locales: {
-        root: {
-          label: "English",
-          lang: "en",
-        },
-        fa: {
-          label: "فارسی",
-          lang: "fa",
-          dir: "rtl",
-        },
-      },
-
       customCss: ["./src/styles/global.css"],
-      // Override default component here
       components: {
-        Footer: "./src/components/starlight/Footer.astro",
-        ThemeSelect: "./src/components/starlight/ThemeToggle.astro",
+        Header: "./src/components/overrides/Header.astro",
+        Footer: "./src/components/overrides/Footer.astro",
+        ThemeSelect: "./src/components/overrides/ThemeToggle.astro",
       },
-
+      pagination: false,
       ...(githubUrl
         ? {
             social: [

@@ -1,0 +1,121 @@
+---
+interface Step {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+  label?: string;
+}
+
+const {
+  steps,
+  label = "Product building workflow",
+} = Astro.props;
+---
+
+<ol class="workflow-steps" aria-label={label}>
+  {
+    steps.map((step, index) => (
+      <li class="workflow-step">
+        <div class="workflow-step__number">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div class="workflow-step__content">
+          <h3>{step.title}</h3>
+
+          <p>{step.description}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    gap: 1rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .workflow-step {
+    position: relative;
+
+    min-width: 0;
+    padding: 1.25rem;
+
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+
+    background: var(--surface);
+  }
+
+  .workflow-step__number {
+    display: grid;
+    place-items: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    margin-block-end: 1.5rem;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 0.7rem;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .workflow-step__content h3 {
+    margin: 0 0 0.55rem;
+
+    color: var(--text-strong);
+
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .workflow-step__content p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1000px) {
+    .workflow-steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .workflow-steps {
+      grid-template-columns: 1fr;
+    }
+
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .workflow-step__number {
+      flex-shrink: 0;
+      margin: 0;
+    }
+  }
+</style>

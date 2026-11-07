@@ -1,0 +1,344 @@
+---
+import type { Starter } from "../../types/starter";
+
+interface Props {
+  starter: Starter;
+  locale?: "en" | "fa";
+}
+
+const {
+  starter,
+  locale = "en",
+} = Astro.props;
+
+const status = starter.status ?? "stable";
+
+const statusLabels = {
+  en: {
+    stable: "Stable",
+    beta: "Beta",
+    planned: "Planned",
+    featured: "Featured",
+    github: "GitHub",
+    docs: "Documentation",
+  },
+  fa: {
+    stable: "پایدار",
+    beta: "بتا",
+    planned: "در برنامه",
+    featured: "ویژه",
+    github: "گیت‌هاب",
+    docs: "مستندات",
+  },
+};
+
+const labels = statusLabels[locale];
+---
+
+<article class="starter-card">
+  <div class="starter-card__top">
+    <div class="starter-card__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5z" />
+        <path d="m3 12 9 5 9-5" />
+        <path d="m3 16 9 5 9-5" />
+      </svg>
+    </div>
+
+    <div class="starter-card__badges">
+      {
+        starter.featured && (
+          <span class="starter-badge starter-badge--featured">
+            {labels.featured}
+          </span>
+        )
+      }
+
+      <span class={`starter-badge starter-badge--${status}`}>
+        {labels[status]}
+      </span>
+    </div>
+  </div>
+
+  <div class="starter-card__content">
+    <span class="starter-card__category">
+      {starter.category}
+    </span>
+
+    <h3>{starter.name}</h3>
+
+    <p>{starter.description}</p>
+  </div>
+
+  <ul class="starter-card__technologies" aria-label="Technologies">
+    {
+      starter.technologies.slice(0, 5).map((technology) => (
+        <li>{technology}</li>
+      ))
+    }
+  </ul>
+
+  <div class="starter-card__footer">
+    {
+      starter.version && (
+        <span class="starter-card__version">
+          v{starter.version}
+        </span>
+      )
+    }
+
+    <div class="starter-card__links">
+      <a
+        href={starter.repository}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${starter.name} ${labels.github}`}
+      >
+        {labels.github}
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 17 17 7M7 7h10v10" />
+        </svg>
+      </a>
+
+      {
+        starter.docsUrl && (
+          <a
+            href={starter.docsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {labels.docs}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .starter-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 320px;
+    padding: 1.4rem;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+
+    background: var(--surface);
+
+    transition:
+      border-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .starter-card:hover {
+    transform: translateY(-4px);
+
+    border-color: var(--accent-border);
+
+    box-shadow: var(--shadow-md);
+  }
+
+  .starter-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .starter-card__icon {
+    display: grid;
+    place-items: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 0.8rem;
+
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .starter-card__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .starter-card__badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  .starter-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 0.25rem 0.55rem;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    color: var(--muted);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .starter-badge--stable {
+    border-color: rgb(32 185 129 / 25%);
+    background: rgb(32 185 129 / 9%);
+    color: #20b981;
+  }
+
+  .starter-badge--beta {
+    border-color: rgb(49 133 255 / 25%);
+    background: rgb(49 133 255 / 9%);
+    color: #3185ff;
+  }
+
+  .starter-badge--planned {
+    background: var(--surface-soft);
+  }
+
+  .starter-badge--featured {
+    border-color: rgb(139 117 255 / 25%);
+    background: rgb(139 117 255 / 9%);
+    color: #8b75ff;
+  }
+
+  .starter-card__content {
+    flex: 1;
+    margin-block: 1.5rem;
+  }
+
+  .starter-card__category {
+    display: block;
+    margin-block-end: 0.5rem;
+
+    color: var(--accent);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .starter-card h3 {
+    margin: 0 0 0.6rem;
+
+    color: var(--text-strong);
+
+    font-size: 1.15rem;
+    font-weight: 750;
+    letter-spacing: -0.025em;
+  }
+
+  .starter-card__content p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.86rem;
+    line-height: 1.7;
+  }
+
+  .starter-card__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+
+    margin: 0;
+    padding: 0 0 1.2rem;
+
+    list-style: none;
+  }
+
+  .starter-card__technologies li {
+    padding: 0.3rem 0.55rem;
+
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+
+    background: var(--surface-soft);
+    color: var(--muted);
+
+    font-size: 0.68rem;
+    font-weight: 550;
+  }
+
+  .starter-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    padding-block-start: 1rem;
+
+    border-top: 1px solid var(--border);
+  }
+
+  .starter-card__version {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .starter-card__links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .starter-card__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    color: var(--accent);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .starter-card__links a:hover {
+    text-decoration: underline;
+  }
+
+  .starter-card__links svg {
+    width: 0.85rem;
+    height: 0.85rem;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .starter-card {
+      transition: none;
+    }
+
+    .starter-card:hover {
+      transform: none;
+    }
+  }
+</style>

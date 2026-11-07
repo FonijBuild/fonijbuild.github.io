@@ -1,0 +1,102 @@
+---
+const isFa = /^\/fa(?:\/|$)/.test(Astro.url.pathname);
+
+const labels = isFa
+  ? {
+      credit: "قدرت‌گرفته از",
+      home: "خانه",
+      handbook: "راهنما",
+      starters: "استارترها",
+      cli: "ابزار خط فرمان",
+    }
+  : {
+      credit: "Powered by",
+      home: "Home",
+      handbook: "Handbook",
+      starters: "Easy Starters",
+      cli: "Fonij CLI",
+    };
+
+const localePrefix = isFa ? "/fa" : "";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <nav aria-label="FonijBuild navigation">
+      <a href={`${localePrefix}/`}>{labels.home}</a>
+      <a href={`${localePrefix}/handbook/`}>{labels.handbook}</a>
+      <a href={`${localePrefix}/starters/`}>{labels.starters}</a>
+      <a href={`${localePrefix}/cli/`}>{labels.cli}</a>
+    </nav>
+
+    <span class="site-footer__credit">
+      {labels.credit}
+      <a
+        href="https://github.com/FonijBuild"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        FonijBuild
+      </a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    flex-shrink: 0;
+    border-top: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    width: min(calc(100% - 2rem), 1200px);
+    min-height: 4rem;
+    margin-inline: auto;
+  }
+
+  .site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+
+  .site-footer a {
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--accent);
+  }
+
+  .site-footer__credit {
+    display: flex;
+    gap: 0.35rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .site-footer__credit a {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .site-footer__inner {
+      justify-content: center;
+      padding-block: 1rem;
+    }
+
+    .site-footer nav {
+      justify-content: center;
+    }
+  }
+</style>

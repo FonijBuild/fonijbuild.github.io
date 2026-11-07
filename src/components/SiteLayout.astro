@@ -1,0 +1,298 @@
+---
+import "../styles/global.css";
+
+import SiteHeader from "../components/ui/SiteHeader.astro";
+import SiteFooter from "../components/ui/SiteFooter.astro";
+
+const SITE_NAME = "FonijBuild";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = SITE_NAME,
+  description = "An AI-first ecosystem for product builders.",
+  canonicalURL: canonicalURLProp,
+  ogImage,
+  noindex = false,
+} = Astro.props;
+
+// Page metadata.
+const pageTitle =
+  title === SITE_NAME
+    ? SITE_NAME
+    : `${title} · ${SITE_NAME}`;
+
+// Generate canonical URL when Astro.site is configured.
+const canonicalURL =
+  canonicalURLProp ??
+  (Astro.site
+    ? new URL(Astro.url.pathname, Astro.site).href
+    : undefined);
+
+// Generate absolute Open Graph image URL.
+const ogImageURL = ogImage
+  ? new URL(ogImage, Astro.site ?? Astro.url).href
+  : undefined;
+
+const skipLinkLabel = "Skip to main content";
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <meta
+      name="color-scheme"
+      content="light dark"
+    />
+
+    <!-- Primary metadata -->
+    <title>{pageTitle}</title>
+
+    <meta
+      name="description"
+      content={description}
+    />
+
+    {canonicalURL && (
+      <link
+        rel="canonical"
+        href={canonicalURL}
+      />
+    )}
+
+    {noindex && (
+      <meta
+        name="robots"
+        content="noindex, nofollow"
+      />
+    )}
+
+    <!-- Open Graph metadata -->
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:site_name"
+      content={SITE_NAME}
+    />
+
+    <meta
+      property="og:title"
+      content={pageTitle}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    {canonicalURL && (
+      <meta
+        property="og:url"
+        content={canonicalURL}
+      />
+    )}
+
+    {ogImageURL && (
+      <meta
+        property="og:image"
+        content={ogImageURL}
+      />
+    )}
+
+    <!-- Twitter metadata -->
+    <meta
+      name="twitter:card"
+      content={
+        ogImageURL
+          ? "summary_large_image"
+          : "summary"
+      }
+    />
+
+    <meta
+      name="twitter:title"
+      content={pageTitle}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+
+    {ogImageURL && (
+      <meta
+        name="twitter:image"
+        content={ogImageURL}
+      />
+    )}
+
+    <!-- Initialize theme before rendering the page -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+
+        try {
+          const savedTheme = localStorage.getItem(
+            "starlight-theme"
+          );
+
+          const prefersLight = window.matchMedia(
+            "(prefers-color-scheme: light)"
+          ).matches;
+
+          const theme =
+            savedTheme === "light" ||
+            savedTheme === "dark"
+              ? savedTheme
+              : prefersLight
+                ? "light"
+                : "dark";
+
+          root.dataset.theme = theme;
+        } catch {
+          root.dataset.theme = "dark";
+        }
+      })();
+    </script>
+
+    <!-- Allow individual pages to inject additional head elements -->
+    <slot name="head" />
+  </head>
+
+  <body>
+    <!-- Accessibility: Skip navigation -->
+    <a
+      class="skip-link"
+      href="#main-content"
+    >
+      {skipLinkLabel}
+    </a>
+
+    <!-- Global header -->
+    <SiteHeader />
+
+    <!-- Main page content -->
+    <main
+      id="main-content"
+      class="site-main"
+    >
+      <slot />
+    </main>
+
+    <!-- Global footer -->
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  /* ========================================
+     Global document styles
+  ======================================== */
+
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    min-height: 100%;
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 320px;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0;
+
+    background: var(--bg, #0b1020);
+    color: var(--text, #c8cdd8);
+
+    font-family:
+      var(--font-sans, system-ui, sans-serif);
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ========================================
+     Main content
+  ======================================== */
+
+  .site-main {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* ========================================
+     Skip link
+  ======================================== */
+
+  .skip-link {
+    position: fixed;
+    top: 1rem;
+    inset-inline-start: 1rem;
+
+    z-index: 1000;
+
+    padding: 0.75rem 1rem;
+
+    border: 1px solid var(--accent-border);
+    border-radius: 0.6rem;
+
+    background: var(--surface);
+    color: var(--text-strong);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transform: translateY(-200%);
+    transition: transform 160ms ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ========================================
+     Reduced motion
+  ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+
+    .skip-link {
+      transition: none;
+    }
+  }
+</style>

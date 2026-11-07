@@ -1,0 +1,152 @@
+---
+import DefaultFooter from "@astrojs/starlight/components/Footer.astro";
+
+const route = Astro.locals.starlightRoute;
+
+const localePrefix = route.locale
+  ? `/${route.locale}`
+  : "";
+
+const labels = {
+      credit: "Powered by",
+      home: "Home",
+      handbook: "Handbook",
+      starters: "Easy Starters",
+      cli: "Fonij CLI",
+    };
+---
+
+<div class="docs-footer">
+  <DefaultFooter>
+    <slot />
+  </DefaultFooter>
+
+  <div class="ecosystem-footer">
+    <nav aria-label="FonijBuild ecosystem">
+      <a href={`${localePrefix}/`}>
+        {labels.home}
+      </a>
+
+      <a href={`${localePrefix}/handbook/`}>
+        {labels.handbook}
+      </a>
+
+      <a href={`${localePrefix}/starters/`}>
+        {labels.starters}
+      </a>
+
+      <a href={`${localePrefix}/cli/`}>
+        {labels.cli}
+      </a>
+    </nav>
+
+    <div class="ecosystem-footer__credit">
+      <span>{labels.credit}</span>
+
+      <a
+        href="https://github.com/FonijBuild"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        FonijBuild
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  :global(.main-pane) {
+    min-height: calc(100vh - var(--sl-nav-height));
+    min-height: calc(100dvh - var(--sl-nav-height));
+  }
+
+  :global(.main-pane > main) {
+    display: flex;
+    flex-direction: column;
+
+    min-height: inherit;
+  }
+
+  :global(.main-pane > main > .content-panel:last-child) {
+    display: flex;
+    flex: 1;
+  }
+
+  :global(
+    .main-pane > main > .content-panel:last-child > .sl-container
+  ) {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    flex: 1;
+  }
+
+  .docs-footer {
+    margin-top: auto;
+  }
+
+  .ecosystem-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+
+    margin-block-start: 1.5rem;
+    padding-block: 1.2rem;
+
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .ecosystem-footer nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+  }
+
+  .ecosystem-footer nav a {
+    color: var(--sl-color-gray-3);
+
+    font-size: var(--sl-text-xs);
+    text-decoration: none;
+
+    transition: color 150ms ease;
+  }
+
+  .ecosystem-footer nav a:hover {
+    color: var(--sl-color-text-accent);
+  }
+
+  .ecosystem-footer__credit {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+  }
+
+  .ecosystem-footer__credit a {
+    color: var(--sl-color-text-accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .ecosystem-footer__credit a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .ecosystem-footer {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ecosystem-footer nav {
+      justify-content: center;
+    }
+  }
+</style>

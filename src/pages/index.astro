@@ -1,0 +1,250 @@
+---
+import SiteLayout from "../components/SiteLayout.astro";
+
+import SectionHeading from "../components/ui/SectionHeading.astro";
+
+import EcosystemCard from "../components/ui/EcosystemCard.astro";
+
+import WorkflowSteps from "../components/ui/WorkflowSteps.astro";
+
+const ecosystem = [
+  {
+    title: "Product Builder Handbook",
+    description:
+      "Practical knowledge, principles, and guides for building modern software products.",
+    eyebrow: "Learn",
+    href: "/handbook/",
+    icon: "book",
+    tone: "violet",
+  },
+  {
+    title: "Easy Starters",
+    description:
+      "Production-capable foundations for different software architectures and technologies.",
+    eyebrow: "Start",
+    href: "/starters/",
+    icon: "layers",
+    tone: "blue",
+  },
+  {
+    title: "Fonij CLI",
+    description:
+      "An AI-first command-line tool to initialize and evolve maintainable software projects.",
+    eyebrow: "Build",
+    href: "/cli/",
+    icon: "terminal",
+    tone: "green",
+  },
+];
+
+const steps = [
+  {
+    title: "Define",
+    description: "Understand your idea and product requirements.",
+  },
+  {
+    title: "Learn",
+    description: "Discover the right principles and architecture.",
+  },
+  {
+    title: "Start",
+    description: "Choose a suitable project foundation.",
+  },
+  {
+    title: "Build",
+    description: "Develop with maintainable engineering practices.",
+  },
+  {
+    title: "Ship",
+    description: "Deploy, learn, and continuously improve.",
+  },
+];
+---
+
+<SiteLayout
+  title="FonijBuild"
+  description="An AI-first ecosystem for product builders."
+>
+  <section class="hero">
+    <span class="hero__eyebrow">
+      THE PRODUCT BUILDER ECOSYSTEM
+    </span>
+
+    <h1>
+      Build better products,
+      <span>from idea to production.</span>
+    </h1>
+
+    <p>
+      An AI-first ecosystem combining practical knowledge,
+      production-ready foundations, and intelligent development tools.
+    </p>
+
+    <div class="hero__actions">
+      <a href="/handbook/" class="button button--primary">
+        Explore the Handbook
+      </a>
+
+      <a href="/starters/" class="button button--secondary">
+        Browse Starters
+      </a>
+    </div>
+  </section>
+
+  <section class="ecosystem-section">
+    <SectionHeading
+      eyebrow="The Ecosystem"
+      title="Everything you need to build software products."
+      description="Learn the right practices, start with a solid foundation, and build with the right tools."
+      align="center"
+    />
+
+    <div class="ecosystem-grid">
+      {
+        ecosystem.map((item) => (
+          <EcosystemCard {...item} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="workflow-section">
+    <SectionHeading
+      eyebrow="Your Journey"
+      title="From idea to production."
+      description="A practical workflow for turning ideas into maintainable products."
+      align="center"
+    />
+
+    <WorkflowSteps steps={steps} />
+  </section>
+</SiteLayout>
+
+<style>
+  .hero {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    padding-block: clamp(5rem, 12vw, 9rem);
+
+    text-align: center;
+  }
+
+  .hero__eyebrow {
+    color: var(--accent);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+  }
+
+  .hero h1 {
+    margin-block: 1.5rem;
+
+    color: var(--text-strong);
+
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 850;
+    letter-spacing: -0.065em;
+    line-height: 1.08;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .hero > p {
+    max-width: 660px;
+    margin: 0 auto;
+
+    color: var(--muted);
+
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+  }
+
+  .hero__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    margin-block-start: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 3rem;
+    padding-inline: 1.3rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+      transform 160ms ease,
+      background 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .button--primary:hover {
+    background: #5147e5;
+    color: white;
+  }
+
+  .button--secondary {
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-strong);
+  }
+
+  .button--secondary:hover {
+    background: var(--surface-hover);
+    color: var(--text-strong);
+  }
+
+  .ecosystem-section,
+  .workflow-section {
+    width: min(calc(100% - 2rem), 1200px);
+    margin-inline: auto;
+
+    padding-block: 4rem;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 850px) {
+    .ecosystem-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+</style>
